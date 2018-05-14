@@ -1,0 +1,21 @@
+/*
+ * moves.c
+ *
+ *  Created on: May 2, 2018
+ *      Author: Higuerey
+ */
+
+#include "Cpu.h"
+#include "moves.h"
+
+void forward(int speed){
+	
+}
+
+void backward(int speed){
+	
+}
+
+void stop(){
+	
+}

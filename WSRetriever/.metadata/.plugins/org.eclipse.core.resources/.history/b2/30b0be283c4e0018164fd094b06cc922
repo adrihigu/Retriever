@@ -1,0 +1,31 @@
+<CodeGenerationInfo>
+  <ToolchainSettings>
+    <option>
+      <name>PE_G_4PEx_ToolChain_Compiler_SearchUserPaths</name>
+      <values lines_count="2">
+        <Line>"${ProjDirPath}/Sources"</Line>
+        <Line>"${ProjDirPath}/Generated_Code"</Line>
+      </values>
+    </option>
+  </ToolchainSettings>
+  <GeneratedFilesList>
+    <GeneratedByPE>
+      <File Name="Generated_Code/Cpu.h" FileDate="2018-05-02, 13:56:28" FileAge="1525285588502" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/PE_Error.h" FileDate="2018-05-02, 13:56:28" FileAge="1525285588652" FileType="45637" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2018-05-02, 13:56:28" FileAge="1525285588402" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2018-05-02, 13:56:28" FileAge="1525285588672" FileType="45637" />
+      <File Name="Project_Settings/Linker_Files/ProcessorExpert.lcf" FileDate="2018-05-02, 13:56:28" FileAge="1525285588372" FileType="8" CompNumb="4" />
+      <File Name="Generated_Code/IO_Map.h" FileDate="2018-05-02, 13:56:28" FileAge="1525285588602" FileType="45637" />
+      <File Name="Documentation/carrito.txt" FileDate="2018-05-02, 13:56:29" FileAge="1525285589129" FileType="3072" />
+      <File Name="Sources/Events.h" FileDate="2018-05-02, 13:56:28" FileAge="1525285588302" FileType="131328" />
+      <File Name="Documentation/carrito_SIGNALS.txt" FileDate="2018-05-02, 13:56:28" FileAge="1525285588722" FileType="3072" />
+      <File Name="Sources/main.c" FileDate="2018-05-02, 13:56:28" FileAge="1525285588532" FileType="128" />
+      <File Name="Documentation/carrito_Settings.xml" FileDate="2018-05-02, 13:56:28" FileAge="1525285588892" FileType="3072" />
+      <File Name="Generated_Code/IO_Map.c" FileDate="2018-05-02, 13:56:28" FileAge="1525285588562" FileType="45637" />
+      <File Name="Generated_Code/PE_Const.h" FileDate="2018-05-02, 13:56:28" FileAge="1525285588622" FileType="45637" />
+      <File Name="Sources/Events.c" FileDate="2018-05-02, 13:56:28" FileAge="1525285588269" FileType="131328" />
+      <File Name="Generated_Code/Vectors.c" FileDate="2018-05-02, 13:56:28" FileAge="1525285588342" FileType="45637" CompNumb="4" />
+    </GeneratedByPE>
+  </GeneratedFilesList>
+  <CodeGenReference>1</CodeGenReference>
+</CodeGenerationInfo>
