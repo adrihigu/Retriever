@@ -1,12 +1,12 @@
 import processing.serial.*;
-// COMENTARIO RANDOM DE GIT
+
 // Variables de recepcion de datos
 Serial myPort;                                                           // Puerto Serial
-byte[] inBuffer= new byte[5];                                            // Bytes de entrada del puerto serial
+byte[] inBuffer= new byte[32];                                            // Bytes de entrada del puerto serial
 int pot = 0;                                                             // medida del potenciometro
 int bufferSize=1;                                                        // Tamaño del buffer de entrada
-int baudRate = 9600;
-int[] sharpRef = {0}; // INTRODUCIR VALORES
+int baudRate = 9620;
+int[] sharpRef = new int[11]; // INTRODUCIR VALORES
 int byteRx;
 int n;                                                                   // Numero de asciis del resultado de la camara
 int M1p;
@@ -14,11 +14,11 @@ int M2p;
 boolean M1m;
 boolean M2m;
 boolean camBusy;                                                        // Indica si la camara está ocupada
-boolean pwmRx = false;
-boolean sensRx = false;
-boolean eventRx = false;
+boolean pwmRx = true;
+boolean sensRx = true;
+boolean eventRx = true;
 boolean camRx = false;
-boolean sharpRx = false;
+boolean sharpRx = true;
 boolean onRx;
 boolean gameRx;
 boolean e4Rx;
@@ -61,21 +61,32 @@ float xLabel, yLabel;                                                    // Long
 float xLength, yLength;                                                  // Espacio entre puntos del eje X e Y
 
 void setup(){
-  size(1024,700);                                                        // Inicializa el tamaño de la ventana
+  size(100,70);                                                        // Inicializa el tamaño de la ventana
   printArray(Serial.list());                                             // Muestra los puertos seriales disponibles
 //CMUCam carCam = new CMUCam();
   myPort = new Serial(this, Serial.list()[0], baudRate);                   // Inicializa el puerto usado para recepción serial
   myPort.buffer(bufferSize);                                             // Ajusta el tamaño del buffer serial, por defecto 1
+  initRef();
 }
 
 void draw() {
-println("DRAW");
+}
+
+void initRef(){
+  float[] sharpBlack = {360,1340,1540,1660,1560,1200,1040,1040,800,660,480,300};  // 20 cm con color negro (mV)
+  float[] sharpWhite = {400,1000,1760,1800,1760,1500,1320,1200,1100,860,800,700};  // 20 cm con color blanco (mV)
+  
+  for(int i = 0 ; i < sharpRef.length; i++){
+    sharpRef[i] = int((128/3000) * (sharpBlack[i] + sharpWhite[i])/2);
+    
+  }
 }
 
 //*********************************************** RECEPCION DE DATOS ***************************************************//
  
 void serialEvent(Serial myPort) { 
   byteRx = 0;
+  println("sync = " + sync);
   myPort.readBytes(inBuffer);                  // Lectura del buffer de entrada
   println("inBuffer = ");
   printArray(inBuffer);
@@ -83,12 +94,6 @@ void serialEvent(Serial myPort) {
   if(sync){
     if(inBuffer[0] >= 0){                      // Si hay sincronizacion y si no se está leyendo un encabezado...
     byteRx += 1;
-      if(sharpRx){
-        sharpBuffer.append(decodeSharp());// Decodifica la señal del infrarrojo (7 bits)
-        if(sharpBuffer.size() > 100){
-          sharpBuffer.remove(0);
-        }
-      }
       if(pwmRx){
         decodePWM();                           // Decodifica las señales de los PWM: M1+, M1-, M2+ ,M2-
       }
@@ -98,13 +103,20 @@ void serialEvent(Serial myPort) {
       if(eventRx){        
         decodeEvent();                         // Decodifica los eventos
       } 
-      camRx = false; ////////////////////////////QUITAR
       if(camRx){
         decodeCam();                           // Decodifica los resultados de la CMUcam
-      } 
-    }                                  
-    readNextHeader();                        // Lee el encabezado del siguiente bloque
+      }
+      if(sharpRx){
+        sharpBuffer.append(decodeSharp());    // Decodifica la señal del infrarrojo (7 bits)
+        if(sharpBuffer.size() > 100){
+          sharpBuffer.remove(0);
+        }
+      }
+    }
   }
+    if(sync){
+      readNextHeader();                        // Lee el encabezado del siguiente bloque
+    }  
   myPort.buffer(bufferSize);                 // Cambia el tamaño del buffer de recepción para el siguiente bloque de bytes
 }
 
@@ -205,21 +217,27 @@ void readNextHeader(){
       
     if((inBuffer[bufferSize-1] & 0x40) == 0x40){
       pwmRx = true;
-      sensRx = true;
       nextBS += 5;
+    }
+    
+    if((inBuffer[bufferSize-1] & 0x20) == 0x20){
+      sensRx = true;
       nextBS += 2;
     }
-    if((inBuffer[bufferSize-1] & 0x20) == 0x20){
+    
+    if((inBuffer[bufferSize-1] & 0x10) == 0x10){
       eventRx = true;
       nextBS += 1;
     }
-    if((inBuffer[bufferSize-1] & 0x1F) != 0x00){
+    
+    if((inBuffer[bufferSize-1] & 0x0F) != 0x00){
       camRx = true;
-      n = int(inBuffer[bufferSize-1] & 0x1F);
+      n = int(inBuffer[bufferSize-1] & 0x0F);
       nextBS += n;
     }
   }
-  
+  println("bufferSize = " + bufferSize);
+  println("nextBS = " + nextBS);
   bufferSize = nextBS;
 }
 
