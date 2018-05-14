@@ -1,5 +1,5 @@
 import processing.serial.*;
-
+// COMENTARIO RANDOM DE GIT
 // Variables de recepcion de datos
 Serial myPort;                                                           // Puerto Serial
 byte[] inBuffer= new byte[5];                                            // Bytes de entrada del puerto serial
