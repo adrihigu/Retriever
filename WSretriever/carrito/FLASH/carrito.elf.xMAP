@@ -1,0 +1,175 @@
+
+
+
+# .abs__InterruptVectorTable
+  00000000 0000019C .abs    InterruptVectorTable	(Vectors_c.obj)
+
+# .abs_NVPROT_INIT
+  0000040D 00000001 .abs    NVPROT_INIT	(Cpu_c.obj)
+
+# .abs_NVOPT_INIT
+  0000040F 00000001 .abs    NVOPT_INIT	(Cpu_c.obj)
+#>00000400          ___heap_size (linker command file)
+#>00000400          ___stack_size (linker command file)
+#>00800000          ___RAM_ADDRESS (linker command file)
+#>00002000          ___RAM_SIZE (linker command file)
+#>00000000          ___FLASH_ADDRESS (linker command file)
+#>00020000          ___FLASH_SIZE (linker command file)
+
+# .userram
+
+# .code
+
+# .text
+  00000410 0000001C .text   TI1_Init	(TI1_c.obj)
+  0000042C 00000022 .text   TI1_Interrupt	(TI1_c.obj)
+  0000044E 0000002E .text   SetRatio	(PWM2p_c.obj)
+  0000047C 00000014 .text   PWM2p_SetRatio16	(PWM2p_c.obj)
+  00000490 00000012 .text   PWM2p_Init	(PWM2p_c.obj)
+  000004A2 0000002E .text   SetRatio	(PWM1p_c.obj)
+  000004D0 00000014 .text   PWM1p_SetRatio16	(PWM1p_c.obj)
+  000004E4 00000020 .text   PWM1p_Init	(PWM1p_c.obj)
+  00000504 00000002 .text   Cpu_Interrupt	(Cpu_c.obj)
+  00000506 00000088 .text   __initialize_hardware	(Cpu_c.obj)
+  0000058E 00000140 .text   PE_low_level_init	(Cpu_c.obj)
+  000006CE 0000002A .text   BitsPTD23_GetMsk	(BitsPTD23_c.obj)
+  000006F8 00000042 .text   BitsPTD23_GetBit	(BitsPTD23_c.obj)
+  0000073A 0000002A .text   BitsPTA23_GetMsk	(BitsPTA23_c.obj)
+  00000764 00000042 .text   BitsPTA23_GetBit	(BitsPTA23_c.obj)
+  000007A6 00000026 .text   BitM2m_PutVal	(BitM2m_c.obj)
+  000007CC 00000026 .text   BitM1m_PutVal	(BitM1m_c.obj)
+  000007F2 00000132 .text   ASPC_SendBlock	(ASPC_c.obj)
+  00000924 000000D0 .text   ASPC_InterruptRx	(ASPC_c.obj)
+  000009F4 000000BE .text   ASPC_InterruptTx	(ASPC_c.obj)
+  00000AB2 00000030 .text   ASPC_InterruptError	(ASPC_c.obj)
+  00000AE2 0000006E .text   ASPC_Init	(ASPC_c.obj)
+  00000B50 0000006E .text   AD1_Interrupt	(AD1_c.obj)
+  00000BBE 0000000E .text   ClrSumV	(AD1_c.obj)
+  00000BCC 0000002A .text   AD1_HWEnDi	(AD1_c.obj)
+  00000BF6 0000002A .text   AD1_Measure	(AD1_c.obj)
+  00000C20 00000034 .text   AD1_GetChanValue16	(AD1_c.obj)
+  00000C54 00000020 .text   AD1_Init	(AD1_c.obj)
+  00000C74 00000002 .text   __initialize_system	(startcf_c.obj)
+  00000C76 00000062 .text   __copy_rom_section	(startcf_c.obj)
+  00000CD8 00000046 .text   __copy_rom_sections_to_ram	(startcf_c.obj)
+  00000D1E 00000004 .text   _ExitProcess	(startcf_c.obj)
+  00000D22 00000210 .text   clear_mem	(startcf_c.obj)
+  00000F32 00000090 .text   _startup	(startcf_c.obj)
+  00000FC2 00000134 .text   main	(main_c.obj)
+  000010F6 00000002 .text   AD1_OnEnd	(Events_c.obj)
+  000010F8 0000032A .text   TI1_OnInterrupt	(Events_c.obj)
+  00001422 00000002 .text   ASPC_OnError	(Events_c.obj)
+  00001424 00000002 .text   ASPC_OnRxChar	(Events_c.obj)
+  00001426 00000002 .text   ASPC_OnTxChar	(Events_c.obj)
+  00001428 00000002 .text   ASPC_OnFullRxBuf	(Events_c.obj)
+  0000142A 00000002 .text   ASPC_OnFreeTxBuf	(Events_c.obj)
+  0000142C 0000001C .text   __call_static_initializers	(librt.a cf_staticinitia)
+  00001448 0000002C .text   __destroy_global_chain	(librt.a cf_staticinitia)
+  00001474 0000000C .text   _ewl_exit	(librt.a abort_exit.o   )
+  00001480 00000002 .rodata BitsPTD23_Table	(BitsPTD23_c.obj)
+  00001482 00000002 .rodata BitsPTA23_Table	(BitsPTA23_c.obj)
+  00001484 00000002 .rodata Channels	(AD1_c.obj)
+#>00001488          ___ROM_AT (linker command file)
+#>00001488          ___DATA_ROM (linker command file)
+
+# .data
+#>00800000          ___DATA_RAM (linker command file)
+#>00800000          __exception_table_start__ (linker command file)
+# Exception index
+  00800000 00000000         Exception Table Index	()
+#>00800000          __exception_table_end__ (linker command file)
+#>00800000          ___sinit__ (linker command file)
+# Linker generated symbols
+  00800000 00000004         static initializer	(linker generated)
+#>00800004          __START_DATA (linker command file)
+#>00800004          __END_DATA (linker command file)
+#>00800004          __START_SDATA (linker command file)
+  00800004 00000002 .sdata  duty	(main_c.obj)
+  00800006 00000001 .sdata  pwmOK	(main_c.obj)
+  00800007 00000001 .sdata  sensOK	(main_c.obj)
+  00800008 00000001 .sdata  eventOK	(main_c.obj)
+  00800009 00000001 .sdata  sharpOK	(main_c.obj)
+  0080000A 00000001 .sdata  E4	(main_c.obj)
+  0080000C 00000002 .sdata  send	(Events_c.obj)
+#>00800010          __END_SDATA (linker command file)
+#>00800010          ___DATA_END (linker command file)
+#>00800010          __SDA_BASE (linker command file)
+
+# .bss
+#>00800010          ___BSS_START (linker command file)
+#>00800010          __START_SBSS (linker command file)
+  00800010 00000002 .sbss   ActualRatio	(PWM2p_c.obj)
+  00800012 00000002 .sbss   ActualRatio	(PWM1p_c.obj)
+  00800014 00000001 .sbss   SR_lock	(Cpu_c.obj)
+  00800015 00000001 .sbss   OnFreeTxBuf_semaphore	(ASPC_c.obj)
+  00800016 00000064 .sbss   OutBuffer	(ASPC_c.obj)
+  0080007A 00000001 .sbss   OutIndxW	(ASPC_c.obj)
+  0080007B 00000001 .sbss   OutIndxR	(ASPC_c.obj)
+  0080007C 00000001 .sbss   ASPC_OutLen	(ASPC_c.obj)
+  0080007D 00000064 .sbss   InpBuffer	(ASPC_c.obj)
+  008000E1 00000001 .sbss   InpIndxW	(ASPC_c.obj)
+  008000E2 00000001 .sbss   InpIndxR	(ASPC_c.obj)
+  008000E3 00000001 .sbss   ASPC_InpLen	(ASPC_c.obj)
+  008000E4 00000001 .sbss   SerFlag	(ASPC_c.obj)
+  008000E6 00000004 .sbss   AD1_OutV	(AD1_c.obj)
+  008000EA 00000001 .sbss   ModeFlg	(AD1_c.obj)
+  008000EB 00000001 .sbss   SumChan	(AD1_c.obj)
+  008000EC 00000001 .sbss   OutFlg	(AD1_c.obj)
+  008000ED 00000001 .sbss   camOK	(main_c.obj)
+  008000EE 00000001 .sbss   camOP	(main_c.obj)
+  008000EF 00000001 .sbss   camBytes	(main_c.obj)
+  008000F0 00000001 .sbss   ON	(main_c.obj)
+  008000F1 00000001 .sbss   game	(main_c.obj)
+  008000F2 00000001 .sbss   E3	(main_c.obj)
+  008000F3 00000001 .sbss   E2	(main_c.obj)
+  008000F4 00000001 .sbss   E1	(main_c.obj)
+  008000F5 00000001 .sbss   E0	(main_c.obj)
+  008000F6 00000002 .sbss   pot	(main_c.obj)
+  008000F8 00000002 .sbss   sharpRes	(main_c.obj)
+  008000FA 00000008 .sbss   camRes	(main_c.obj)
+  00800102 00000001 .sbss   CK	(main_c.obj)
+  00800103 00000001 .sbss   busy	(main_c.obj)
+  00800104 00000001 .sbss   camPck	(main_c.obj)
+  00800106 00000002 .sbss   dutySide	(main_c.obj)
+  00800108 00000001 .sbss   CodError	(main_c.obj)
+  0080010A 00000002 .sbss   j	(Events_c.obj)
+  0080010C 00000002 .sbss   i	(Events_c.obj)
+  0080010E 00000064 .sbss   txData	(Events_c.obj)
+#>00800174          __END_SBSS (linker command file)
+#>00800174          __START_BSS (linker command file)
+  00800174 00000002 .bss    SR_reg	(Cpu_c.obj)
+  00800178 00000004 .bss    __global_destructor_chain	(librt.a cf_staticinitia)
+#>0080017C          __END_BSS (linker command file)
+#>0080017C          ___BSS_END (linker command file)
+
+# .custom
+#>0080017C          ___HEAP_START (linker command file)
+#>0080017C          ___heap_addr (linker command file)
+#>0080057C          ___HEAP_END (linker command file)
+#>0080057C          ___SP_END (linker command file)
+#>0080097C          ___SP_INIT (linker command file)
+#>0080057C          ___mem_limit (linker command file)
+#>00000010          ___stack_safety (linker command file)
+#>0080097C          __SP_INIT (linker command file)
+#>0080097C          ___SP_AFTER_RESET (linker command file)
+#>00001498          _romp_at (linker command file)
+
+# .romp
+#>00001498          __S_romp (linker command file)
+
+
+# Memory map:
+  v_addr   p_addr   size     name
+  00000000 00000000 0000019C .abs__InterruptVectorTable abs__InterruptVectorTable
+  0000040D 0000040D 00000001 .abs_NVPROT_INIT abs_NVPROT_INIT
+  0000040F 0000040F 00000001 .abs_NVOPT_INIT abs_NVOPT_INIT
+  00000410 00000410 00000000 .code      code
+  00000410 00000410 00001078 .text      code
+  00800000 00800000 00000000 .userram   userram
+  00800000 00001488 00000010 .data      userram
+  00800010 00800010 0000016C .bss       userram
+  0080017C 0080017C 00000000 .custom    userram
+  0080017C 00001498 00000018 .romp      userram
+
+# Link start time: Mon May 21 12:53:50 2018
+# Link end time: Mon May 21 12:53:53 2018
