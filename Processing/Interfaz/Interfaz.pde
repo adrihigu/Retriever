@@ -9,16 +9,16 @@ int baudRate = 9620;
 float[] sharpRef = new float[11]; // INTRODUCIR VALORES
 int byteRx;
 int camBytesRx;                                                          // Numero de argumentos del resultado de la camara + encabezado
-int M1p;
-int M2p;
-boolean M1m;
-boolean M2m;
+int M1p = 0;
+int M2p = 0;
+boolean M1m = false;
+boolean M2m = false;
 boolean camBusy;                                                        // Indica si la camara está ocupada
-boolean pwmRx;
-boolean sensRx;
-boolean eventRx;
-boolean camRx;
-boolean sharpRx;
+boolean pwmRx = true;
+boolean sensRx = true;
+boolean eventRx = true;
+boolean camRx = false;
+boolean sharpRx = true;
 boolean onRx;
 boolean gameRx;
 boolean e4Rx;                                                            // Indica si la recepción del DEMO está sincronizada 
@@ -26,10 +26,10 @@ boolean e3Rx;
 boolean e2Rx;
 boolean e1Rx;
 boolean e0Rx;
-boolean dig1;                                                      // Sensor digital 1
-boolean dig2;                                                      // Sensor digital 2
-boolean dig3;                                                      // Sensor digital 3
-boolean dig4;                                                      // Sensor digital 4
+boolean dig1=false;                                                      // Sensor digital 1
+boolean dig2=false;                                                      // Sensor digital 2
+boolean dig3=false;                                                      // Sensor digital 3
+boolean dig4=false;                                                      // Sensor digital 4
 boolean sync=false;                                                    // Indica si la comunicacion serial esta sincronizada
 IntList sharpBuffer = new IntList();
 
@@ -40,11 +40,11 @@ boolean sensTx;
 boolean eventTx;
 boolean camTx;
 int camBytesTx;                                                      // Numero de argumentos para la camara + encabezado
-boolean e4Tx = false;                                                            // Indica si la recepción del DEMO está sincronizada 
-boolean e3Tx = true;
-boolean e2Tx = true;
-boolean e1Tx = true;
-boolean e0Tx = true;
+boolean e4Tx;                                                            // Indica si la recepción del DEMO está sincronizada 
+boolean e3Tx;
+boolean e2Tx;
+boolean e1Tx;
+boolean e0Tx;
 int camOPTx;
 
 // Variables de juego
@@ -78,18 +78,17 @@ float xLabel, yLabel;                                                    // Long
 float xLength, yLength;                                                  // Espacio entre puntos del eje X e Y
 
 void setup(){
-  size(100,70);                                                        // Inicializa el tamaño de la ventana
+  size(600,500);                                                        // Inicializa el tamaño de la ventana
   background(255);
-  printArray(Serial.list());                                             // Muestra los puertos seriales disponibles
-//CMUCam carCam = new CMUCam();
-  myPort = new Serial(this, Serial.list()[0], baudRate);                 // Inicializa el puerto usado para recepción serial
-  myPort.buffer(bufferSize);                                             // Ajusta el tamaño del buffer serial, por defecto 1
+  sharpBuffer.append(15);
+  textSize(18);
+//CMUCam carCam = new CMUCam();                                            // Ajusta el tamaño del buffer serial, por defecto 1
   initRef();
 }
 
 void draw() {
   background(255);
-  //drawRx();
+  drawRx();
 }
 
 void initRef(){
@@ -109,15 +108,11 @@ void drawRx(){
   text("M2+: " + M2p + "   M2-: " + M2m + "  (Derecho)", ls, 4 * ls);
   text("Dig1: " + dig1 + "   Dig2: " + dig2 + "   Dig3: " + dig3 + "   Dig4: " + dig4, ls, 5 * ls);
   text("Potenciómetro = " + pot, ls, 6 * ls);
-}
+} 
 
 void PC2DemoQE(){
   int byteTx;
   byteTx = 0;
-  
-  camTx = false;
-  eventTx = true;
-  
   txBuffer[0] = byte((1 << 7) + (((pwmTx) ? 1 : 0) << 6) + (((sensTx) ? 1 : 0) << 5) + (((eventTx) ? 1 : 0) << 4) + camBytesTx & 0x000F);
   byteTx++;
   if(eventTx){
@@ -130,7 +125,7 @@ void PC2DemoQE(){
     byteTx++;
     for(int i = 0; i < camBytesTx -1; i++){
     // txBuffer[byteTx] = ARREGLO DE ARGUMENTOS DE LA INSTRUCCION[i]
-      byteTx++;
+    byteTx++;
     }
   }
   myPort.write(txBuffer);
@@ -138,57 +133,37 @@ void PC2DemoQE(){
 
 //*********************************************** RECEPCION DE DATOS ***************************************************//
  
-void serialEvent(Serial myPort) {
+void serialEvent(Serial myPort) { 
   byteRx = 0;
-  //println("sync = " + sync);
+  println("sync = " + sync);
   myPort.readBytes(rxBuffer);                  // Lectura del buffer de entrada
-  //println("rxBuffer = ");
-  //printArray(rxBuffer);
+  println("rxBuffer = ");
+  printArray(rxBuffer);
   syncronize();                                // Verifica si el buffer está sincronizado
   if(sync){
     if(rxBuffer[0] >= 0){                      // Si hay sincronizacion y si no se está leyendo un encabezado...
-    byteRx += 0;
+    byteRx += 1;
       if(pwmRx){
         decodePWM();                           // Decodifica las señales de los PWM: M1+, M1-, M2+ ,M2-
-        println("duty = " + M1p);
-        println("M1- = " + M1m);
-        println("dutySide = " + M2p);
-        println("M2- = " + M2m);
-    }
+      }
       if(sensRx){        
         decodeSens();                          // Decodifica los sensores digitales y la medida del potenciómetro (10 bits)
-        println("dig1 = " + dig1);
-        println("dig2 = " + dig2);
-        println("dig3 = " + dig3);
-        println("dig4 = " + dig4);
-        println("pot = " + pot);
-    } 
+      } 
       if(eventRx){        
         decodeEvent();                         // Decodifica los eventos
-        println("on = " + onRx);
-        println("game = " + gameRx);
-        println("e0Rx = " + e0Rx);
-        println("e1Rx = " + e1Rx);
-        println("e2Rx = " + e2Rx);
-        println("e3Rx = " + e3Rx);
-        println("e4Rx = " + e4Rx);
       } 
-
-      decodeCam();                           // Decodifica los resultados de la CMUcam
-      
+      if(camRx){
+        decodeCam();                           // Decodifica los resultados de la CMUcam
+      }
       if(sharpRx){
-        println("sharpVolt = " + (rxBuffer[byteRx] & 0x7F));
         sharpBuffer.append(decodeSharp());    // Decodifica la señal del infrarrojo (7 bits)
-
         if(sharpBuffer.size() > 100){
           sharpBuffer.remove(0);
         }
-        println("sharpDist = " + sharpBuffer.get(sharpBuffer.size()-1));
       }
     }
   }
     if(sync){
-      //println("NXTHeader = " + rxBuffer[bufferSize-1]);
       readNextHeader();                        // Lee el encabezado del siguiente bloque
     }  
   myPort.buffer(bufferSize);                 // Cambia el tamaño del buffer de recepción para el siguiente bloque de bytes
@@ -206,23 +181,33 @@ void syncronize(){
   }
 }
 
+int decodeSharp(){              // Devuelve distancia en cm entre 1 y 21 (solo impares)
+  int sharpVolt;
+  sharpVolt = rxBuffer[byteRx] & 0x7F;
+  byteRx += 1;
+  for(int i=0; i < sharpRef.length -1; i++){
+    if((sharpVolt >= sharpRef[i]) && (sharpVolt <= sharpRef[i+1])){
+      return 2*i+1;
+    }
+  }
+  return -1;
+}
+
 void decodePWM(){
   M1m = ((rxBuffer[byteRx] & 0x20) == 0x20) ? true : false;
   M2m = ((rxBuffer[byteRx] & 0x10) == 0x10) ? true : false;
   M1p = ((rxBuffer[byteRx] & 0x07) << 12) + ((rxBuffer[byteRx+1] & 0x7F) << 5) + ((rxBuffer[byteRx+2] & 0x7C) >> 2);
   M2p = ((rxBuffer[byteRx+2] & 0x03) << 14) + ((rxBuffer[byteRx+3] & 0x7F) << 7) + (rxBuffer[byteRx+4] & 0x7F);
-  M2p += (((M2p & 0x00008000) == 0x00008000) ? 0xFFFF0000 : 0);
   byteRx += 5;
 }
 
 void decodeSens(){
-  dig1 = ((rxBuffer[byteRx] & 0x40) == 0x40) ? false : true;
-  dig2 = ((rxBuffer[byteRx] & 0x20) == 0x20) ? false : true;
-  dig3 = ((rxBuffer[byteRx] & 0x10) == 0x10) ? false : true;
-  dig4 = ((rxBuffer[byteRx] & 0x08) == 0x08) ? false : true;
-  pot = int(rxBuffer[byteRx+1] & 0x1F) << 7;
-  pot += int(rxBuffer[byteRx+2] & 0x7F);
-  byteRx += 3;
+  dig1 = ((rxBuffer[byteRx] & 0x40) == 0x40) ? true : false;
+  dig2 = ((rxBuffer[byteRx] & 0x20) == 0x20) ? true : false;
+  dig3 = ((rxBuffer[byteRx] & 0x10) == 0x10) ? true : false;
+  dig4 = ((rxBuffer[byteRx] & 0x08) == 0x08) ? true : false;
+  pot = ((rxBuffer[byteRx] & 0x07) << 9) + ((rxBuffer[byteRx+1] & 0x08) << 2);
+  byteRx += 2;
 }
 
 void decodeEvent(){
@@ -244,9 +229,9 @@ void decodeCam(){ // OP: \r (stop stream) = 1, CR (change register) = 2,  GM (Ge
   pack = (rxBuffer[byteRx] & 0x0C) >> 2;
   camBusy = ((rxBuffer[byteRx] & 0x02) == 0x02) ? true : false;
   ACK = ((rxBuffer[byteRx] & 0x01) == 0x01) ? true : false;
-  byteRx += 1;
-  /*
+  
   if(ACK){
+    /*
     switch(pack){
     case 1:
       packageS(rxBuffer,n,opCam);
@@ -262,21 +247,8 @@ void decodeCam(){ // OP: \r (stop stream) = 1, CR (change register) = 2,  GM (Ge
     }
     
     DECIDIR QUE SE VA A ACTUALIZAR EN BASE 
+    */
   }
-  */
-}
-
-int decodeSharp(){              // Devuelve distancia en cm entre 1 y 21 (solo impares)
-  int sharpVolt;
-  sharpVolt = int(rxBuffer[byteRx] & 0x1F) << 7;
-  sharpVolt += int(rxBuffer[1+byteRx] & 0x7F);
-  byteRx += 2;
-  for(int i=0; i < sharpRef.length-1; i++){
-    if((sharpVolt >= sharpRef[i]) && (sharpVolt <= sharpRef[i+1])){
-      return 2*i+1;
-    }
-  }
-  return -1;
 }
   /**
    * 
@@ -290,6 +262,9 @@ void readNextHeader(){
     sync = false;
   }
   else{
+      sharpRx = true;
+      nextBS += 1;
+      
     if((rxBuffer[bufferSize-1] & 0x40) == 0x40){
       pwmRx = true;
       nextBS += 5;
@@ -297,7 +272,7 @@ void readNextHeader(){
     
     if((rxBuffer[bufferSize-1] & 0x20) == 0x20){
       sensRx = true;
-      nextBS += 3;
+      nextBS += 2;
     }
     
     if((rxBuffer[bufferSize-1] & 0x10) == 0x10){
@@ -305,16 +280,17 @@ void readNextHeader(){
       nextBS += 1;
     }
     
-    camBytesRx = int(rxBuffer[bufferSize-1] & 0x0F);
-    nextBS += camBytesRx;
-    
-    sharpRx = true;
-    nextBS += 2;
+    if((rxBuffer[bufferSize-1] & 0x0F) != 0x00){
+      camRx = true;
+      camBytesRx = int(rxBuffer[bufferSize-1] & 0x0F);
+      nextBS += camBytesRx;
+    }
   }
-  //println("bufferSize = " + bufferSize);
-  //println("nextBS = " + nextBS);
+  println("bufferSize = " + bufferSize);
+  println("nextBS = " + nextBS);
   bufferSize = nextBS;
 }
+
 
   /**
    * 
