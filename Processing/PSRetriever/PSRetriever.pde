@@ -21,7 +21,7 @@ boolean camRx;
 boolean sharpRx;
 boolean onRx;
 boolean gameRx;
-boolean e4Rx;                                                            // Indica si la recepción del DEMO está sincronizada 
+boolean e4Rx;                                                      // Indica si la recepción del DEMO está sincronizada 
 boolean e3Rx;
 boolean e2Rx;
 boolean e1Rx;
@@ -30,52 +30,39 @@ boolean dig1;                                                      // Sensor dig
 boolean dig2;                                                      // Sensor digital 2
 boolean dig3;                                                      // Sensor digital 3
 boolean dig4;                                                      // Sensor digital 4
-boolean sync=false;                                                    // Indica si la comunicacion serial esta sincronizada
+boolean sync=false;                                                // Indica si la comunicacion serial esta sincronizada
 IntList sharpBuffer = new IntList();
 
 // Variables de transmision de datos
 byte[] txBuffer= new byte[32];
-boolean pwmTx;
-boolean sensTx;
+int byteTx;
+boolean askTx;
+boolean movTx;
 boolean eventTx;
 boolean camTx;
-int camBytesTx;                                                      // Numero de argumentos para la camara + encabezado
-boolean e4Tx = false;                                                            // Indica si la recepción del DEMO está sincronizada 
-boolean e3Tx = true;
-boolean e2Tx = true;
-boolean e1Tx = true;
-boolean e0Tx = true;
+boolean e4Tx = sync;                                               // Indica si la recepción de PC está sincronizada 
+boolean e3Tx = false;
+boolean e2Tx = false;
+boolean e1Tx = false;
+boolean e0Tx = false;
+
+// Procesamiento de datos de camara
+byte[] camArgs = new byte[16];
+byte[] camRes = new byte[16];
+int camBytesTx;                                                                 // Numero de argumentos para la camara + encabezado
 int camOPTx;
+
 
 // Variables de juego
 boolean on;                                // Estado del sistema
 boolean game;                              // Juego actual
-
-// Variables de detección de tono
-int dataSize = 512;                                                      // Cantidad de datos a procesar por el algoritmo YIN
-int refSize = int(dataSize/60) + 1;                                      // Cantidad de muestras para referencia del potenciómetro
-float sampleRate = 3640.89158153;                                        // Frecuencia de muestreo
-float myPitch;                                                           // Resultado de la detección de frecuencia
-IntList pitchBuffer = new IntList();                                     // Guarda los tonos detectados
+int dutySide;                              // Factor de giro
+int duty;                                  // Velocidad de movimiento frontal
+int leftDuty = 0;                          // Corrección añadida a la rueda izquierda
 
 // Variables de interfaz de usuario
 PFont font;                                                              // Tipo de letra
 int ls = 24;                                                             // Constante para espaciado
-int[] refTone = new int[1];                                              // El tono asociado a la medida del potenciómetro
-int refVolt = 2350;                                                      // Maxima excursion de voltaje que ofrece el potenciometro
-int mode;                                                                // Modo de operacion del afinador
-int holdTone;                                                            // Tono mantenido para el modo HOLD
-FloatList refFrec = new FloatList();                                     // Lista de las frecuencias que se usan para delimitar los tonos musicales
-float xLevels = 50;                                                      // Número máximo de rectangulos en la gráfica = Resolución en X
-float yLevels;                                                           // Cantidad de tonos = Resolución en Y
-float rectWidth;                                                         // Ancho de rectángulos
-float rectHeight;                                                        // Alto de rectángulos
-String modeMsg = "";                                                     // Mensaje del modo de operación
-String down = "02C5";                                                    // Caracter Unicode. Flecha hacia abajo
-String up = "02C4";                                                      // Caracter Unicode. Flecha hacia arriba
-boolean stop=false;                                                      // Cuando es true, deja de dibujar
-float xLabel, yLabel;                                                    // Longitud de los ejes X e Y
-float xLength, yLength;                                                  // Espacio entre puntos del eje X e Y
 
 void setup(){
   size(100,70);                                                        // Inicializa el tamaño de la ventana
@@ -112,16 +99,19 @@ void drawRx(){
 }
 
 void PC2DemoQE(){
-  int byteTx;
   byteTx = 0;
-  
   camTx = false;
   eventTx = true;
   
-  txBuffer[0] = byte((1 << 7) + (((pwmTx) ? 1 : 0) << 6) + (((sensTx) ? 1 : 0) << 5) + (((eventTx) ? 1 : 0) << 4) + camBytesTx & 0x000F);
+  txBuffer[0] = byte((1 << 7) + (((askTx) ? 1 : 0) << 6) + (((movTx) ? 1 : 0) << 5) + (((eventTx) ? 1 : 0) << 4) + camBytesTx & 0x000F);
   byteTx++;
+  
+  if(movTx){
+    encodeMov();
+  }
+  
   if(eventTx){
-    txBuffer[byteTx] = byte((((on) ? 1 : 0) << 6) + (((game) ? 1 : 0) << 5) + (((e4Tx) ? 1 : 0) << 4) + (((e3Tx) ? 1 : 0) << 3) + (((e2Tx) ? 1 : 0) << 2) + (((e1Tx) ? 1 : 0) << 1) + ((e0Tx) ? 1 : 0));
+    txBuffer[byteTx] = byte((((on) ? 1 : 0) << 6) + (((game) ? 1 : 0) << 5) + (((sync) ? 1 : 0) << 4) + (((e3Tx) ? 1 : 0) << 3) + (((e2Tx) ? 1 : 0) << 2) + (((e1Tx) ? 1 : 0) << 1) + ((e0Tx) ? 1 : 0));
     byteTx++;
   }
   
@@ -134,6 +124,27 @@ void PC2DemoQE(){
     }
   }
   myPort.write(txBuffer);
+}
+
+void encodeMov(){
+    txBuffer[byteTx] = byte((dutySide & 0x000C000) >> 14);
+    txBuffer[byteTx+1] = byte((dutySide & 0x00003F80) >> 7);
+    txBuffer[byteTx+2] = byte(dutySide & 0x0000007F);
+    txBuffer[byteTx+3] = byte((duty & 0x000C000) >> 14);
+    txBuffer[byteTx+4] = byte((duty & 0x00003F80) >> 7);
+    txBuffer[byteTx+5] = byte(duty & 0x0000007F);
+    txBuffer[byteTx+6] = byte((leftDuty & 0x000C000) >> 14);
+    txBuffer[byteTx+7] = byte((leftDuty & 0x00003F80) >> 7);
+    txBuffer[byteTx+8] = byte(leftDuty & 0x0000007F);
+    byteTx += 9;
+}
+
+void encodeCam(){
+  txBuffer[byteTx] = byte(((camOPTx & 0x00000007) << 4) + (camBytesTx & 0x0000000F));
+  /*
+  camArg
+  */
+  
 }
 
 //*********************************************** RECEPCION DE DATOS ***************************************************//
