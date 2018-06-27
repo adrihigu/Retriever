@@ -16,13 +16,14 @@ local.properties
 .settings/
 .loadpath
 
-**/RemoteLaunch/
+*/RemoteLaunch/
 **/RemoteSystemsTempFiles/
-**/.metadata/
-**/.settings
-**/.project
-**/Documentation/
-**/FLASH/
+*/.metadata/
+.metadata/
+*/.settings
+*/.project
+*/Documentation/
+*/FLASH/
 # External tool builders
 .externalToolBuilders/
 
