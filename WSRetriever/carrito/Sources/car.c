@@ -1,5 +1,5 @@
 #include "CAR.h"
-
+#include "MOTOR.h"
 
 // Sensores analogicos
 unsigned short sharpRes = 0;      // Lectura de la medida del sensor infrarrojo
@@ -62,6 +62,10 @@ errorType getMode(void){
 
 errorType updateDoggyTrayectory(void){
   camTCMRawAsync();
+  if(timeout() == TRUE && camFlag == RDATA_PENDING){
+    camFlag = CAM_IDLE;
+    stopFreeRun();
+  }
   if (sharpOK == TRUE && camFlag == RDATA_READY){
       print("Data: ");
       printNum((int)camRxBuf[7], itoaBuf);
@@ -83,20 +87,12 @@ errorType updateDoggyTrayectory(void){
 
       //AS1_SendChar(camRxBuf[6]);
       if(camRxBuf[6] < 30 ){       // > 0 => Necesita girar izquierda
-        dutyI = 0x4FFF;             // 25%
-        M1m = FALSE;
-        
-        dutyD = 0x4FFF ^ 0xFFFF;          // 25%
-        M2m = TRUE;
+        freeLeft(50, FWD);
         print("IZQ ");
       }
       
       else if(camRxBuf[6] > 50){      // < 0 => Necesita girar derecha
-        dutyI = 0x4FFF ^ 0xFFFF;          // 25%
-        M1m = TRUE;
-        
-        dutyD = 0x4FFF;             // 25%
-        M2m = FALSE;
+        freeRight(50, FWD);
         print("DER ");
       }
       
@@ -107,72 +103,51 @@ errorType updateDoggyTrayectory(void){
         
         ///////////////////////////////
         
-        // dutyD = 0;
-        // dutyI = 0;
-        
-        
-        // if((sharpRes > 520) & (sharpRes < 2100)){     // Objetivo lejano
-        // // if(camRxBuf[7] < 50){     // Objetivo lejano
-        //   duty = ((2100 - sharpRes) * 0x7FFF) / (2100 - 520);
-        //   dutyD += dutyRight;
-        //   M1m = FALSE;
-        //   M2m = FALSE;
-        //   print("FWD ");
+        if((sharpRes > 520) & (sharpRes < 2100)){     // Objetivo lejano
+        // if(camRxBuf[7] < 50){     // Objetivo lejano
+          //duty = ((2100 - sharpRes) * 0x7FFF) / (2100 - 520);
+          freeRun(50, 50, FWD);
+          print("FWD ");
           
-        // }else if((sharpRes >= 2100) & (sharpRes < 2450)){ // Objetivo en el rango
-        //   // }else if(camRxBuf[7] > 50 && camRxBuf[7] < 90){ // Objetivo en el rango
-        //   duty = 0;       // 0%
-        //   M1m = FALSE;
-        //   M2m = FALSE;
-        //   //modeFlag = START_DOGGY;
-        //   print("CTR ");
+        }else if((sharpRes >= 2100) & (sharpRes < 2450)){ // Objetivo en el rango
+          // }else if(camRxBuf[7] > 50 && camRxBuf[7] < 90){ // Objetivo en el rango
+          stopFreeRun();
+          print("CTR ");
           
-        // }else if((sharpRes >= 2450) & (sharpRes < 2600)){   // Objetivo cercano
-        //   // }else if(camRxBuf[7] > 90 ){   // Objetivo cercano
-        //   duty = 0x7FFF + (((2600 - sharpRes) * 0x7FFF) / (2600 - 2450));
-        //   dutyI += dutyRight;
-        //   M1m = TRUE;
-        //   M2m = TRUE;
-        //   print("BWD "); 
-        // }else{
-        //   duty = 0;       // 0%
-        //   M1m = FALSE;
-        //   M2m = FALSE;
-        //   print("STP ");
-        // }
-        dutyI = 0;              // 0%
-        M1m = FALSE;
+        }else if((sharpRes >= 2450) & (sharpRes < 2600)){   // Objetivo cercano
+          // }else if(camRxBuf[7] > 90 ){   // Objetivo cercano
+          duty = 0x7FFF + (((2600 - sharpRes) * 0x7FFF) / (2600 - 2450));
+          freeRun(50, 50, BWD);
+          print("BWD "); 
+        }else{
+          stopFreeRun();
+          print("STP ");
+        }
         
-        dutyD = 0;              // 0%
-        M2m = FALSE;
-        print("CTR");
 
       }else if(camRxBuf[6]==0 && camRxBuf[7]==0 && camRxBuf[8]==0 && camRxBuf[9]==0 && camRxBuf[10]==0 && camRxBuf[11]==0 && camRxBuf[12]==0){
-        dutyI = 0;              // 0%
-        M1m = FALSE;
-        
-        dutyD = 0;              // 0%
-        M2m = FALSE;
+        stopFreeRun();
         print("LST ");
       }
       
       //printNumLn(420, itoaBuf);
        
       
-       PWM1_SetRatio16((duty + dutyI) ^ 0xFFFF);
-       PWM2_SetRatio16((duty + dutyD) ^ 0xFFFF);
+       // PWM1_SetRatio16((duty + dutyI) ^ 0xFFFF);
+       // PWM2_SetRatio16((duty + dutyD) ^ 0xFFFF);
       
-       M1m_PutVal(M1m);
-       M2m_PutVal(M2m);
-       wait(500);
-       PWM1_SetRatio16(0 ^ 0xFFFF);
-       PWM2_SetRatio16(0 ^ 0xFFFF);
+       // M1m_PutVal(M1m);
+       // M2m_PutVal(M2m);
+       // wait(500);
+       // PWM1_SetRatio16(0 ^ 0xFFFF);
+       // PWM2_SetRatio16(0 ^ 0xFFFF);
       
-       M1m_PutVal(FALSE);
-       M2m_PutVal(FALSE);
+       // M1m_PutVal(FALSE);
+       // M2m_PutVal(FALSE);
       sharpOK = FALSE;
       camFlag = CAM_IDLE;
       camTCMRawAsync();
+      setTimeout(300);
       printLn("");
       // printLn("\27[2J");
     }

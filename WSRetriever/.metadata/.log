@@ -1924,3 +1924,96 @@ java.lang.AssertionError: Assertion failed: Wrong usage of progress monitor in D
 	at com.sun.corba.se.impl.transport.SocketOrChannelConnectionImpl.doWork(Unknown Source)
 	at com.sun.corba.se.impl.orbutil.threadpool.ThreadPoolImpl$WorkerThread.performWork(Unknown Source)
 	at com.sun.corba.se.impl.orbutil.threadpool.ThreadPoolImpl$WorkerThread.run(Unknown Source)
+
+!ENTRY com.freescale.core.debugger.cdt 4 120 2018-06-27 11:54:15.191
+!MESSAGE Error logged from CodeWarrior debugger core:
+!STACK 0
+java.lang.AssertionError: Assertion failed: Wrong usage of progress monitor in DE!
+	at com.freescale.cdt.debug.cw.CWExceptionLogger.logAssert(CWExceptionLogger.java:100)
+	at com.freescale.cdt.debug.cw.CWProgressMonitor.newChild(CWProgressMonitor.java:186)
+	at cwdbg.ProgressMonitorPOA._invoke(ProgressMonitorPOA.java:190)
+	at com.sun.corba.se.impl.protocol.CorbaServerRequestDispatcherImpl.dispatchToServant(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaServerRequestDispatcherImpl.dispatch(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleRequestRequest(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleRequest(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleInput(Unknown Source)
+	at com.sun.corba.se.impl.protocol.giopmsgheaders.RequestMessage_1_2.callback(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleRequest(Unknown Source)
+	at com.sun.corba.se.impl.transport.SocketOrChannelConnectionImpl.dispatch(Unknown Source)
+	at com.sun.corba.se.impl.transport.SocketOrChannelConnectionImpl.doWork(Unknown Source)
+	at com.sun.corba.se.impl.orbutil.threadpool.ThreadPoolImpl$WorkerThread.performWork(Unknown Source)
+	at com.sun.corba.se.impl.orbutil.threadpool.ThreadPoolImpl$WorkerThread.run(Unknown Source)
+
+!ENTRY com.freescale.core.debugger.cdt 4 120 2018-06-27 12:04:45.496
+!MESSAGE Error logged from CodeWarrior debugger core:
+!STACK 0
+java.lang.AssertionError: Assertion failed: Wrong usage of progress monitor in DE!
+	at com.freescale.cdt.debug.cw.CWExceptionLogger.logAssert(CWExceptionLogger.java:100)
+	at com.freescale.cdt.debug.cw.CWProgressMonitor.newChild(CWProgressMonitor.java:186)
+	at cwdbg.ProgressMonitorPOA._invoke(ProgressMonitorPOA.java:190)
+	at com.sun.corba.se.impl.protocol.CorbaServerRequestDispatcherImpl.dispatchToServant(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaServerRequestDispatcherImpl.dispatch(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleRequestRequest(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleRequest(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleInput(Unknown Source)
+	at com.sun.corba.se.impl.protocol.giopmsgheaders.RequestMessage_1_2.callback(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleRequest(Unknown Source)
+	at com.sun.corba.se.impl.transport.SocketOrChannelConnectionImpl.dispatch(Unknown Source)
+	at com.sun.corba.se.impl.transport.SocketOrChannelConnectionImpl.doWork(Unknown Source)
+	at com.sun.corba.se.impl.orbutil.threadpool.ThreadPoolImpl$WorkerThread.performWork(Unknown Source)
+	at com.sun.corba.se.impl.orbutil.threadpool.ThreadPoolImpl$WorkerThread.run(Unknown Source)
+
+!ENTRY com.freescale.core.debugger.cdt 4 120 2018-06-27 12:15:51.308
+!MESSAGE Error logged from CodeWarrior debugger core:
+!STACK 0
+java.lang.AssertionError: Assertion failed: Wrong usage of progress monitor in DE!
+	at com.freescale.cdt.debug.cw.CWExceptionLogger.logAssert(CWExceptionLogger.java:100)
+	at com.freescale.cdt.debug.cw.CWProgressMonitor.newChild(CWProgressMonitor.java:186)
+	at cwdbg.ProgressMonitorPOA._invoke(ProgressMonitorPOA.java:190)
+	at com.sun.corba.se.impl.protocol.CorbaServerRequestDispatcherImpl.dispatchToServant(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaServerRequestDispatcherImpl.dispatch(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleRequestRequest(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleRequest(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleInput(Unknown Source)
+	at com.sun.corba.se.impl.protocol.giopmsgheaders.RequestMessage_1_2.callback(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleRequest(Unknown Source)
+	at com.sun.corba.se.impl.transport.SocketOrChannelConnectionImpl.dispatch(Unknown Source)
+	at com.sun.corba.se.impl.transport.SocketOrChannelConnectionImpl.doWork(Unknown Source)
+	at com.sun.corba.se.impl.orbutil.threadpool.ThreadPoolImpl$WorkerThread.performWork(Unknown Source)
+	at com.sun.corba.se.impl.orbutil.threadpool.ThreadPoolImpl$WorkerThread.run(Unknown Source)
+
+!ENTRY com.freescale.core.debugger.cdt 4 16777218 2018-06-27 12:17:52.552
+!MESSAGE Error launching carrito FLASH (1)
+!STACK 1
+org.eclipse.core.runtime.CoreException: ColdFire GDI Protocol Adapter : Can't connect. The Debugger can not connect to the P&E BDC interface or targetted hardware board.
+	at com.freescale.cdt.debug.cw.core.DebugErrorUtils.handleDebugCoreError(DebugErrorUtils.java:281)
+	at com.freescale.cdt.launch.cw.DownloadLaunchDelegate.cwDoLaunch(DownloadLaunchDelegate.java:542)
+	at com.freescale.cdt.launch.cw.BaseLaunchDelegate.doLaunch(BaseLaunchDelegate.java:203)
+	at com.freescale.cdt.launch.cw.DownloadLaunchDelegate.launchDebug(DownloadLaunchDelegate.java:276)
+	at com.freescale.cdt.launch.cw.DownloadLaunchDelegate.launch(DownloadLaunchDelegate.java:123)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:862)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 com.freescale.core.debugger.cdt 4 16777218 2018-06-27 12:17:52.552
+!MESSAGE ColdFire GDI Protocol Adapter : Can't connect. The Debugger can not connect to the P&E BDC interface or targetted hardware board.
+
+!ENTRY com.freescale.core.debugger.cdt 4 120 2018-06-27 12:18:08.298
+!MESSAGE Error logged from CodeWarrior debugger core:
+!STACK 0
+java.lang.AssertionError: Assertion failed: Wrong usage of progress monitor in DE!
+	at com.freescale.cdt.debug.cw.CWExceptionLogger.logAssert(CWExceptionLogger.java:100)
+	at com.freescale.cdt.debug.cw.CWProgressMonitor.newChild(CWProgressMonitor.java:186)
+	at cwdbg.ProgressMonitorPOA._invoke(ProgressMonitorPOA.java:190)
+	at com.sun.corba.se.impl.protocol.CorbaServerRequestDispatcherImpl.dispatchToServant(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaServerRequestDispatcherImpl.dispatch(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleRequestRequest(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleRequest(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleInput(Unknown Source)
+	at com.sun.corba.se.impl.protocol.giopmsgheaders.RequestMessage_1_2.callback(Unknown Source)
+	at com.sun.corba.se.impl.protocol.CorbaMessageMediatorImpl.handleRequest(Unknown Source)
+	at com.sun.corba.se.impl.transport.SocketOrChannelConnectionImpl.dispatch(Unknown Source)
+	at com.sun.corba.se.impl.transport.SocketOrChannelConnectionImpl.doWork(Unknown Source)
+	at com.sun.corba.se.impl.orbutil.threadpool.ThreadPoolImpl$WorkerThread.performWork(Unknown Source)
+	at com.sun.corba.se.impl.orbutil.threadpool.ThreadPoolImpl$WorkerThread.run(Unknown Source)

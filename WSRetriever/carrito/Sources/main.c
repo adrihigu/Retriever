@@ -61,39 +61,17 @@ void main(void)
   PE_low_level_init();
   
   /*** End of Processor Expert internal initialization.                    ***/
-  //car_Init();
+  car_Init();
   
 
+  //freeRun(50, 50, FWD);
 for (;;)
 {
   // confirmar modo de ejecucion
-  //errorCode = getMode();
+  errorCode = getMode();
 
-  //handleError(execMode(OK));
-  // moveLeft(DUTY50, FWD, 300);
-  // wait(2000);
-  // moveLeft(DUTY50, BWD, 300);
-  // wait(2000);
-  //  moveRight(DUTY50, FWD, 300);
-  //  wait(2000);
-  //  moveRight(DUTY50, BWD, 300);
-  //  wait(2000);
-   // move(47, 50, FWD, 2000);
-   // wait(1000);
-   // move(51, 50, BWD, 2000);
-   // wait(1000);
-  freeRun(50, 50, FWD);
-  wait(2000);
-  stopFreeRun();
-  wait(2000);
-  freeLeft(50,FWD);
-  wait(2000);
-  stopLeft();
-  wait(2000);
-  freeRight(50,FWD);
-  wait(2000);
-  stopRight();
-  wait(2000);
+  handleError(execMode(OK));
+  
 //  handleError(updateCamData());
 //
 //  handleError(updateSharpData());

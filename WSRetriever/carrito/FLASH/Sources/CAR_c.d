@@ -31,4 +31,5 @@ Sources/CAR_c.obj: C:\Users\Ruben\Documents\GitHub\Retriever\WSRetriever\carrito
 	C:\Users\Ruben\Documents\GitHub\Retriever\WSRetriever\carrito\Generated_Code\PWM2.h \
 	C:\Users\Ruben\Documents\GitHub\Retriever\WSRetriever\carrito\Generated_Code\M1m.h \
 	C:\Users\Ruben\Documents\GitHub\Retriever\WSRetriever\carrito\Generated_Code\M2m.h \
-	C:\Users\Ruben\Documents\GitHub\Retriever\WSRetriever\carrito\Sources\TIME.h 
+	C:\Users\Ruben\Documents\GitHub\Retriever\WSRetriever\carrito\Sources\TIME.h \
+	C:\Users\Ruben\Documents\GitHub\Retriever\WSRetriever\carrito\Sources\MOTOR.h 
