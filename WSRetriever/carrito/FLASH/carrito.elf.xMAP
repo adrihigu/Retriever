@@ -1,0 +1,177 @@
+
+
+
+# .abs__InterruptVectorTable
+  00000000 0000019C .abs    InterruptVectorTable	(Vectors_c.obj)
+
+# .abs_NVPROT_INIT
+  0000040D 00000001 .abs    NVPROT_INIT	(Cpu_c.obj)
+
+# .abs_NVOPT_INIT
+  0000040F 00000001 .abs    NVOPT_INIT	(Cpu_c.obj)
+#>00000400          ___heap_size (linker command file)
+#>00000400          ___stack_size (linker command file)
+#>00800000          ___RAM_ADDRESS (linker command file)
+#>00002000          ___RAM_SIZE (linker command file)
+#>00000000          ___FLASH_ADDRESS (linker command file)
+#>00020000          ___FLASH_SIZE (linker command file)
+
+# .userram
+
+# .code
+
+# .text
+  00000410 00000030 .text   TI2_Init	(TI2_c.obj)
+  00000440 00000022 .text   TI2_Interrupt	(TI2_c.obj)
+  00000462 0000001C .text   TI1_Init	(TI1_c.obj)
+  0000047E 00000022 .text   TI1_Interrupt	(TI1_c.obj)
+  000004A0 0000002E .text   SetRatio	(PWM2_c.obj)
+  000004CE 00000014 .text   PWM2_SetRatio16	(PWM2_c.obj)
+  000004E2 00000012 .text   PWM2_Init	(PWM2_c.obj)
+  000004F4 0000002E .text   SetRatio	(PWM1_c.obj)
+  00000522 00000014 .text   PWM1_SetRatio16	(PWM1_c.obj)
+  00000536 00000020 .text   PWM1_Init	(PWM1_c.obj)
+  00000556 00000026 .text   M2m_PutVal	(M2m_c.obj)
+  0000057C 00000026 .text   M1m_PutVal	(M1m_c.obj)
+  000005A2 00000002 .text   Cpu_Interrupt	(Cpu_c.obj)
+  000005A4 0000007C .text   __initialize_hardware	(Cpu_c.obj)
+  00000620 0000012A .text   PE_low_level_init	(Cpu_c.obj)
+  0000074A 000000D4 .text   AS2_RecvChar	(AS2_c.obj)
+  0000081E 000000D0 .text   AS2_InterruptRx	(AS2_c.obj)
+  000008EE 000000BE .text   AS2_InterruptTx	(AS2_c.obj)
+  000009AC 00000030 .text   AS2_InterruptError	(AS2_c.obj)
+  000009DC 0000006E .text   AS2_Init	(AS2_c.obj)
+  00000A4A 000000D0 .text   AS1_InterruptRx	(AS1_c.obj)
+  00000B1A 000000BE .text   AS1_InterruptTx	(AS1_c.obj)
+  00000BD8 00000030 .text   AS1_InterruptError	(AS1_c.obj)
+  00000C08 0000006E .text   AS1_Init	(AS1_c.obj)
+  00000C76 0000006E .text   AD1_Interrupt	(AD1_c.obj)
+  00000CE4 00000020 .text   AD1_Init	(AD1_c.obj)
+  00000D04 00000002 .text   __initialize_system	(startcf_c.obj)
+  00000D06 00000062 .text   __copy_rom_section	(startcf_c.obj)
+  00000D68 00000046 .text   __copy_rom_sections_to_ram	(startcf_c.obj)
+  00000DAE 00000004 .text   _ExitProcess	(startcf_c.obj)
+  00000DB2 00000210 .text   clear_mem	(startcf_c.obj)
+  00000FC2 00000090 .text   _startup	(startcf_c.obj)
+  00001052 00000062 .text   main	(main_c.obj)
+  000010B4 0000003A .text   wait	(TIME_c.obj)
+  000010EE 00000054 .text   freeLeft	(MOTOR_c.obj)
+  00001142 00000054 .text   freeRight	(MOTOR_c.obj)
+  00001196 00000024 .text   stopLeft	(MOTOR_c.obj)
+  000011BA 00000024 .text   stopRight	(MOTOR_c.obj)
+  000011DE 00000094 .text   freeRun	(MOTOR_c.obj)
+  00001272 00000046 .text   stopFreeRun	(MOTOR_c.obj)
+  000012B8 0000002A .text   TI2_OnInterrupt	(Events_c.obj)
+  000012E2 00000002 .text   TI1_OnInterrupt	(Events_c.obj)
+  000012E4 00000002 .text   AD1_OnEnd	(Events_c.obj)
+  000012E6 00000002 .text   AS1_OnError	(Events_c.obj)
+  000012E8 00000002 .text   AS1_OnRxChar	(Events_c.obj)
+  000012EA 00000002 .text   AS1_OnTxChar	(Events_c.obj)
+  000012EC 00000002 .text   AS1_OnFullRxBuf	(Events_c.obj)
+  000012EE 00000002 .text   AS1_OnFreeTxBuf	(Events_c.obj)
+  000012F0 00000002 .text   AS2_OnError	(Events_c.obj)
+  000012F2 00000036 .text   AS2_OnRxChar	(Events_c.obj)
+  00001328 00000002 .text   AS2_OnTxChar	(Events_c.obj)
+  0000132A 00000002 .text   AS2_OnFullRxBuf	(Events_c.obj)
+  0000132C 00000002 .text   AS2_OnFreeTxBuf	(Events_c.obj)
+  0000132E 0000000C .text   _ewl_exit	(librt.a abort_exit.o   )
+  0000133A 0000001C .text   __call_static_initializers	(librt.a cf_staticinitia)
+  00001356 0000002C .text   __destroy_global_chain	(librt.a cf_staticinitia)
+  00001384 00000002 .rodata Channels	(AD1_c.obj)
+#>00001388          ___ROM_AT (linker command file)
+#>00001388          ___DATA_ROM (linker command file)
+
+# .data
+#>00800000          ___DATA_RAM (linker command file)
+#>00800000          __exception_table_start__ (linker command file)
+# Exception index
+  00800000 00000000         Exception Table Index	()
+#>00800000          __exception_table_end__ (linker command file)
+#>00800000          ___sinit__ (linker command file)
+# Linker generated symbols
+  00800000 00000004         static initializer	(linker generated)
+#>00800004          __START_DATA (linker command file)
+#>00800004          __END_DATA (linker command file)
+#>00800004          __START_SDATA (linker command file)
+  00800004 00000001 .sdata  freeRunLeft	(MOTOR_c.obj)
+  00800005 00000001 .sdata  freeRunRight	(MOTOR_c.obj)
+#>00800008          __END_SDATA (linker command file)
+#>00800008          ___DATA_END (linker command file)
+#>00800008          __SDA_BASE (linker command file)
+
+# .bss
+#>00800008          ___BSS_START (linker command file)
+#>00800008          __START_SBSS (linker command file)
+  00800008 00000002 .sbss   ActualRatio	(PWM2_c.obj)
+  0080000A 00000002 .sbss   ActualRatio	(PWM1_c.obj)
+  0080000C 00000001 .sbss   SR_lock	(Cpu_c.obj)
+  0080000D 00000001 .sbss   OnFreeTxBuf_semaphore	(AS2_c.obj)
+  0080000E 00000064 .sbss   OutBuffer	(AS2_c.obj)
+  00800072 00000001 .sbss   OutIndxW	(AS2_c.obj)
+  00800073 00000001 .sbss   OutIndxR	(AS2_c.obj)
+  00800074 00000001 .sbss   AS2_OutLen	(AS2_c.obj)
+  00800075 00000064 .sbss   InpBuffer	(AS2_c.obj)
+  008000D9 00000001 .sbss   InpIndxW	(AS2_c.obj)
+  008000DA 00000001 .sbss   InpIndxR	(AS2_c.obj)
+  008000DB 00000001 .sbss   AS2_InpLen	(AS2_c.obj)
+  008000DC 00000001 .sbss   SerFlag	(AS2_c.obj)
+  008000DD 00000001 .sbss   OnFreeTxBuf_semaphore	(AS1_c.obj)
+  008000DE 00000064 .sbss   OutBuffer	(AS1_c.obj)
+  00800142 00000001 .sbss   OutIndxW	(AS1_c.obj)
+  00800143 00000001 .sbss   OutIndxR	(AS1_c.obj)
+  00800144 00000001 .sbss   AS1_OutLen	(AS1_c.obj)
+  00800145 00000064 .sbss   InpBuffer	(AS1_c.obj)
+  008001A9 00000001 .sbss   InpIndxW	(AS1_c.obj)
+  008001AA 00000001 .sbss   InpIndxR	(AS1_c.obj)
+  008001AB 00000001 .sbss   AS1_InpLen	(AS1_c.obj)
+  008001AC 00000001 .sbss   SerFlag	(AS1_c.obj)
+  008001AE 00000004 .sbss   AD1_OutV	(AD1_c.obj)
+  008001B2 00000001 .sbss   ModeFlg	(AD1_c.obj)
+  008001B3 00000001 .sbss   SumChan	(AD1_c.obj)
+  008001B4 00000001 .sbss   OutFlg	(AD1_c.obj)
+  008001B6 00000002 .sbss   waitMark	(TIME_c.obj)
+  008001B8 00000001 .sbss   waitFlag	(TIME_c.obj)
+  008001B9 00000001 .sbss   timeoutFlag	(TIME_c.obj)
+  008001BA 00000002 .sbss   msCount	(Events_c.obj)
+  008001BC 00000002 .sbss   camFlag	(Events_c.obj)
+  008001BE 00000002 .sbss   camRxBufCount	(Events_c.obj)
+  008001C0 0000001E .sbss   camRxBuf	(Events_c.obj)
+  008001DE 00000002 .sbss   sharpCount	(CAR_c.obj)
+#>008001E0          __END_SBSS (linker command file)
+#>008001E0          __START_BSS (linker command file)
+  008001E0 00000002 .bss    SR_reg	(Cpu_c.obj)
+  008001E4 00000004 .bss    __global_destructor_chain	(librt.a cf_staticinitia)
+#>008001E8          __END_BSS (linker command file)
+#>008001E8          ___BSS_END (linker command file)
+
+# .custom
+#>008001E8          ___HEAP_START (linker command file)
+#>008001E8          ___heap_addr (linker command file)
+#>008005E8          ___HEAP_END (linker command file)
+#>008005E8          ___SP_END (linker command file)
+#>008009E8          ___SP_INIT (linker command file)
+#>008005E8          ___mem_limit (linker command file)
+#>00000010          ___stack_safety (linker command file)
+#>008009E8          __SP_INIT (linker command file)
+#>008009E8          ___SP_AFTER_RESET (linker command file)
+#>00001390          _romp_at (linker command file)
+
+# .romp
+#>00001390          __S_romp (linker command file)
+
+
+# Memory map:
+  v_addr   p_addr   size     name
+  00000000 00000000 0000019C .abs__InterruptVectorTable abs__InterruptVectorTable
+  0000040D 0000040D 00000001 .abs_NVPROT_INIT abs_NVPROT_INIT
+  0000040F 0000040F 00000001 .abs_NVOPT_INIT abs_NVOPT_INIT
+  00000410 00000410 00000000 .code      code
+  00000410 00000410 00000F78 .text      code
+  00800000 00800000 00000000 .userram   userram
+  00800000 00001388 00000008 .data      userram
+  00800008 00800008 000001E0 .bss       userram
+  008001E8 008001E8 00000000 .custom    userram
+  008001E8 00001390 00000018 .romp      userram
+
+# Link start time: Wed Jun 27 12:16:33 2018
+# Link end time: Wed Jun 27 12:16:33 2018

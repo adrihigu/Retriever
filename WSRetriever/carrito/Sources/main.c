@@ -78,10 +78,22 @@ for (;;)
   //  wait(2000);
   //  moveRight(DUTY50, BWD, 300);
   //  wait(2000);
-   move(DUTY50, FWD, 1000);
-   wait(1000);
-   move(DUTY50, BWD, 1000);
-   wait(1000);
+   // move(47, 50, FWD, 2000);
+   // wait(1000);
+   // move(51, 50, BWD, 2000);
+   // wait(1000);
+  freeRun(50, 50, FWD);
+  wait(2000);
+  stopFreeRun();
+  wait(2000);
+  freeLeft(50,FWD);
+  wait(2000);
+  stopLeft();
+  wait(2000);
+  freeRight(50,FWD);
+  wait(2000);
+  stopRight();
+  wait(2000);
 //  handleError(updateCamData());
 //
 //  handleError(updateSharpData());
