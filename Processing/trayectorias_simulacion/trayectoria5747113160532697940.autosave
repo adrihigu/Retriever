@@ -1,0 +1,44 @@
+
+class Trajectory{
+  ArrayList<PVector> vertices;
+  float res = 3;
+  float max_angle = radians(2);
+
+  Trajectory(PVector car, PVector ball, PVector end){
+    float end_dist = PVector.dist(ball, end);
+    float end_res = res/end_dist;
+    vertices = new ArrayList<PVector>();
+    vertices.add(ball.copy());
+    while(PVector.dist(vertices.get(vertices.size() -1), end) >= res){
+      PVector last = vertices.get(vertices.size() -1);
+      vertices.add(PVector.lerp(last, end, end_res));
+    }
+    println(PVector.angleBetween(PVector.sub(vertices.get(0), vertices.get(1)), PVector.sub(car, vertices.get(0))));
+    float angle_diff = PVector.angleBetween(PVector.sub(vertices.get(0), vertices.get(1)), PVector.sub(car, vertices.get(0)));
+    while( angle_diff > radians(15) && PVector.dist(vertices.get(0), car) >= res){
+      PVector dir = PVector.sub(vertices.get(0), vertices.get(1));
+      float angle_dir = (car.x - vertices.get(0).x) > 0? 1 : -1;
+      float angle = dir.heading() + angle_dir*max_angle;
+      PVector next = PVector.fromAngle(angle).mult(sqrt(res)).add(vertices.get(0));
+      vertices.add(0,next);
+      angle_diff = PVector.angleBetween(PVector.sub(vertices.get(0), vertices.get(1)), PVector.sub(vertices.get(0)), car);
+      println(angle_diff);
+      if(vertices.size()>1000) break;
+    }
+    while(PVector.dist(vertices.get(0), car) >= res){
+      vertices.add(0, PVector.lerp(vertices.get(0), car, end_res));
+    }
+  }
+
+  void display(){
+    noFill();
+    stroke(color(66, 244, 66));
+    strokeWeight(1);
+    beginShape();
+    for(PVector v : vertices){
+      curveVertex(v.x, v.y);
+      //print(v);
+    };
+    endShape();
+  }
+}
