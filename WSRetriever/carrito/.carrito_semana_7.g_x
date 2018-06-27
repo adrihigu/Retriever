@@ -1,0 +1,51 @@
+<CodeGenerationInfo>
+  <ToolchainSettings>
+    <option>
+      <name>PE_G_4PEx_ToolChain_Compiler_SearchUserPaths</name>
+      <values lines_count="2">
+        <Line>"${ProjDirPath}/Sources"</Line>
+        <Line>"${ProjDirPath}/Generated_Code"</Line>
+      </values>
+    </option>
+  </ToolchainSettings>
+  <GeneratedFilesList>
+    <GeneratedByPE>
+      <File Name="Generated_Code/AS1.c" FileDate="2018-06-06, 16:45:14" FileAge="1528319714554" FileType="45637" CompNumb="11" />
+      <File Name="Generated_Code/PWM1.c" FileDate="2018-06-22, 16:46:24" FileAge="1529702184606" FileType="45637" CompNumb="12" />
+      <File Name="Documentation/carrito_semana_7.txt" FileDate="2018-06-22, 08:46:31" FileAge="1529673391516" FileType="3072" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2018-06-06, 14:08:34" FileAge="1528310314615" FileType="45637" />
+      <File Name="Generated_Code/TI1.h" FileDate="2018-06-06, 14:08:35" FileAge="1528310315037" FileType="45637" CompNumb="8" />
+      <File Name="Generated_Code/Vectors.c" FileDate="2018-06-11, 15:14:05" FileAge="1528746245835" FileType="45637" CompNumb="4" />
+      <File Name="Documentation/carrito_semana_7_SIGNALS.txt" FileDate="2018-06-26, 09:06:54" FileAge="1530020214901" FileType="3072" />
+      <File Name="Generated_Code/TI1.c" FileDate="2018-06-06, 14:08:35" FileAge="1528310315013" FileType="45637" CompNumb="8" />
+      <File Name="Sources/main.c" FileDate="2018-06-25, 14:15:38" FileAge="1529952338705" FileType="128" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2018-06-06, 14:08:34" FileAge="1528310314452" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/PE_Error.h" FileDate="2018-06-06, 14:08:34" FileAge="1528310314591" FileType="45637" />
+      <File Name="Sources/Events.h" FileDate="2018-06-26, 08:51:05" FileAge="1530019265370" FileType="131328" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2018-06-11, 15:14:05" FileAge="1528746245777" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/AS2.h" FileDate="2018-06-22, 08:46:30" FileAge="1529673390975" FileType="45637" CompNumb="14" />
+      <File Name="Sources/Events.c" FileDate="2018-06-26, 09:05:50" FileAge="1530020150729" FileType="131328" />
+      <File Name="Generated_Code/PWM2.h" FileDate="2018-06-22, 16:46:24" FileAge="1529702184461" FileType="45637" CompNumb="13" />
+      <File Name="Generated_Code/AS2.c" FileDate="2018-06-22, 08:46:31" FileAge="1529673391033" FileType="45637" CompNumb="14" />
+      <File Name="Generated_Code/PWM2.c" FileDate="2018-06-22, 16:46:24" FileAge="1529702184645" FileType="45637" CompNumb="13" />
+      <File Name="Generated_Code/PE_Timer.h" FileDate="2018-06-06, 14:08:34" FileAge="1528310314496" FileType="45637" />
+      <File Name="Generated_Code/AD1.h" FileDate="2018-06-06, 14:08:34" FileAge="1528310314963" FileType="45637" CompNumb="10" />
+      <File Name="Generated_Code/M1m.h" FileDate="2018-06-06, 14:08:34" FileAge="1528310314680" FileType="45637" CompNumb="15" />
+      <File Name="Generated_Code/IO_Map.h" FileDate="2018-06-06, 14:08:34" FileAge="1528310314560" FileType="45637" />
+      <File Name="Generated_Code/TI2.h" FileDate="2018-06-06, 16:45:14" FileAge="1528319714428" FileType="45637" CompNumb="9" />
+      <File Name="Project_Settings/Linker_Files/ProcessorExpert.lcf" FileDate="2018-06-06, 14:08:34" FileAge="1528310314402" FileType="8" CompNumb="4" />
+      <File Name="Generated_Code/PE_Timer.c" FileDate="2018-06-06, 14:08:34" FileAge="1528310314480" FileType="45637" />
+      <File Name="Generated_Code/IO_Map.c" FileDate="2018-06-06, 14:08:34" FileAge="1528310314536" FileType="45637" />
+      <File Name="Generated_Code/M1m.c" FileDate="2018-06-06, 14:08:34" FileAge="1528310314662" FileType="45637" CompNumb="15" />
+      <File Name="Generated_Code/AD1.c" FileDate="2018-06-06, 14:08:34" FileAge="1528310314943" FileType="45637" CompNumb="10" />
+      <File Name="Documentation/carrito_semana_7_Settings.xml" FileDate="2018-06-22, 16:46:25" FileAge="1529702185020" FileType="3072" />
+      <File Name="Generated_Code/TI2.c" FileDate="2018-06-06, 16:45:14" FileAge="1528319714498" FileType="45637" CompNumb="9" />
+      <File Name="Generated_Code/M2m.h" FileDate="2018-06-06, 14:08:34" FileAge="1528310314646" FileType="45637" CompNumb="16" />
+      <File Name="Generated_Code/PE_Const.h" FileDate="2018-06-06, 14:08:34" FileAge="1528310314576" FileType="45637" />
+      <File Name="Generated_Code/AS1.h" FileDate="2018-06-06, 16:45:14" FileAge="1528319714388" FileType="45637" CompNumb="11" />
+      <File Name="Generated_Code/M2m.c" FileDate="2018-06-06, 14:08:34" FileAge="1528310314631" FileType="45637" CompNumb="16" />
+      <File Name="Generated_Code/PWM1.h" FileDate="2018-06-22, 16:46:24" FileAge="1529702184525" FileType="45637" CompNumb="12" />
+    </GeneratedByPE>
+  </GeneratedFilesList>
+  <CodeGenReference>9</CodeGenReference>
+</CodeGenerationInfo>

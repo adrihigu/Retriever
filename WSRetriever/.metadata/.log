@@ -702,3 +702,78 @@ javax.net.ssl.SSLException: Received fatal alert: protocol_version
 
 !ENTRY org.eclipse.osgi 2 1 2018-06-26 22:00:52.007
 !MESSAGE NLS unused message: trace_trigger_dv_error_message in: com.freescale.sa.mcu.analysispoints.nls.ui
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-06-26 22:19:15.520
+!MESSAGE Indexed 'carrito_semana_7' (23 sources, 39 headers) in 2.24 sec: 4,204 declarations; 4,803 references; 0 unresolved inclusions; 1 syntax errors; 1 unresolved names (0.01%)
+
+!ENTRY org.eclipse.ltk.ui.refactoring 4 10000 2018-06-26 22:19:27.374
+!MESSAGE Internal Error
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while moving resources.
+	at org.eclipse.core.internal.resources.Resource.move(Resource.java:1642)
+	at org.eclipse.ltk.core.refactoring.resource.RenameResourceChange.perform(RenameResourceChange.java:123)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2391)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+	at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2391)
+	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Resource already exists on disk: 'C:\Users\Ruben\Documents\GitHub\Retriever\WSRetriever\carrito'.
+!SUBENTRY 1 org.eclipse.core.resources 1 4 2018-06-26 22:19:27.376
+!MESSAGE Problems encountered while moving resources.
+!SUBENTRY 2 org.eclipse.core.resources 1 4 2018-06-26 22:19:27.376
+!MESSAGE Resource already exists on disk: 'C:\Users\Ruben\Documents\GitHub\Retriever\WSRetriever\carrito'.
+
+!ENTRY org.eclipse.ltk.ui.refactoring 4 10000 2018-06-26 22:19:43.252
+!MESSAGE Internal Error
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while moving resources.
+	at org.eclipse.core.internal.resources.Resource.move(Resource.java:1642)
+	at org.eclipse.ltk.core.refactoring.resource.RenameResourceChange.perform(RenameResourceChange.java:123)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2391)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+	at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2391)
+	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Resource already exists on disk: 'C:\Users\Ruben\Documents\GitHub\Retriever\WSRetriever\carrito'.
+!SUBENTRY 1 org.eclipse.core.resources 1 4 2018-06-26 22:19:43.253
+!MESSAGE Problems encountered while moving resources.
+!SUBENTRY 2 org.eclipse.core.resources 1 4 2018-06-26 22:19:43.253
+!MESSAGE Resource already exists on disk: 'C:\Users\Ruben\Documents\GitHub\Retriever\WSRetriever\carrito'.
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-06-26 22:20:03.732
+!MESSAGE Indexed 'carrito_semana_7' (23 sources, 39 headers) in 3.73 sec: 4,204 declarations; 4,803 references; 0 unresolved inclusions; 1 syntax errors; 1 unresolved names (0.01%)
+
+!ENTRY org.eclipse.ltk.ui.refactoring 4 10000 2018-06-26 22:20:22.089
+!MESSAGE Internal Error
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while moving resources.
+	at org.eclipse.core.internal.resources.Resource.move(Resource.java:1642)
+	at org.eclipse.ltk.core.refactoring.resource.RenameResourceChange.perform(RenameResourceChange.java:123)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2391)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+	at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2391)
+	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Resource already exists on disk: 'C:\Users\Ruben\Documents\GitHub\Retriever\WSRetriever\carrito'.
+!SUBENTRY 1 org.eclipse.core.resources 1 4 2018-06-26 22:20:22.091
+!MESSAGE Problems encountered while moving resources.
+!SUBENTRY 2 org.eclipse.core.resources 1 4 2018-06-26 22:20:22.091
+!MESSAGE Resource already exists on disk: 'C:\Users\Ruben\Documents\GitHub\Retriever\WSRetriever\carrito'.
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-06-26 22:22:01.883
+!MESSAGE Indexed 'carrito_semana_7' (23 sources, 39 headers) in 2.88 sec: 4,204 declarations; 4,803 references; 0 unresolved inclusions; 1 syntax errors; 1 unresolved names (0.01%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-06-26 22:22:25.211
+!MESSAGE Indexed 'carrito' (23 sources, 39 headers) in 1.19 sec: 4,204 declarations; 4,789 references; 51 unresolved inclusions; 1 syntax errors; 1 unresolved names (0.01%)
