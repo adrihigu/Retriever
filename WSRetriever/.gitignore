@@ -18,9 +18,11 @@ local.properties
 
 **/RemoteLaunch/
 **/RemoteSystemsTempFiles
-**/.metadata/
+**/.metadata
 **/.settings
 **/.project
+**/Documentation
+**/FLASH
 # External tool builders
 .externalToolBuilders/
 
