@@ -962,3 +962,101 @@ javax.net.ssl.SSLException: Received fatal alert: protocol_version
 
 !ENTRY org.eclipse.osgi 2 1 2018-06-26 22:44:23.915
 !MESSAGE NLS unused message: trace_trigger_dv_error_message in: com.freescale.sa.mcu.analysispoints.nls.ui
+
+!ENTRY org.eclipse.cdt.core 4 2 2018-06-26 22:50:48.136
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.cdt.core".
+!STACK 1
+C Model Exception: C Model Status [Element  does not exist.]
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getRawPathEntries(PathEntryManager.java:628)
+	at org.eclipse.cdt.internal.core.model.SetPathEntryContainerOperation.executeOperation(SetPathEntryContainerOperation.java:72)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.setPathEntryContainer(PathEntryManager.java:673)
+	at org.eclipse.cdt.core.model.CoreModel.setPathEntryContainer(CoreModel.java:918)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedEntriesContainerInitializer.initialize(ConfigBasedEntriesContainerInitializer.java:26)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager$1.run(PathEntryManager.java:740)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getPathEntryContainer(PathEntryManager.java:730)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getPathEntryContainer(PathEntryManager.java:694)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:540)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:518)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:504)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreChangedOperation.executeOperation(PathEntryStoreChangedOperation.java:41)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.pathEntryStoreChanged(PathEntryManager.java:1285)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.notifyListeners(PathEntryStoreProxy.java:68)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.fireContentChangedEvent(PathEntryStoreProxy.java:61)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.postProcessProviderChange(PathEntryStoreProxy.java:152)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.checkUpdateProvider(AbstractCExtensionProxy.java:121)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.doHandleEvent(AbstractCExtensionProxy.java:167)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.doHandleEvent(PathEntryStoreProxy.java:158)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.handleEvent(AbstractCExtensionProxy.java:154)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.notifyListeners(CProjectDescriptionManager.java:2410)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.fireLoadedEvent(AbstractCProjectDescriptionStorage.java:268)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:262)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:440)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:422)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:416)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:409)
+	at com.freescale.core.ide.projectsview.engine.IColumn.manages(IColumn.java:285)
+	at com.freescale.core.ide.projectsview.engine.IColumn$3.runInCommonThread(IColumn.java:221)
+	at org.eclipse.core.runtime.jobs.CommonJob.runInThread(CommonJob.java:144)
+	at org.eclipse.core.runtime.jobs.CommonJob.access$0(CommonJob.java:137)
+	at org.eclipse.core.runtime.jobs.CommonJob$ExecuteContext.run(CommonJob.java:37)
+	at org.eclipse.core.runtime.jobs.CommonJob$Manager$2.run(CommonJob.java:98)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.core 4 969 2018-06-26 22:50:48.138
+!MESSAGE Element  does not exist.
+!SUBENTRY 1 org.eclipse.cdt.core 4 969 2018-06-26 22:50:48.139
+!MESSAGE Element  does not exist.
+
+!ENTRY org.eclipse.cdt.core 4 0 2018-06-26 22:50:48.152
+!MESSAGE Exception occurred in container initializer: org.eclipse.cdt.internal.core.settings.model.ConfigBasedEntriesContainerInitializer@16a94d2
+!STACK 1
+C Model Exception: C Model Status [Element  does not exist.]
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getRawPathEntries(PathEntryManager.java:628)
+	at org.eclipse.cdt.internal.core.model.SetPathEntryContainerOperation.executeOperation(SetPathEntryContainerOperation.java:72)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.setPathEntryContainer(PathEntryManager.java:673)
+	at org.eclipse.cdt.core.model.CoreModel.setPathEntryContainer(CoreModel.java:918)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedEntriesContainerInitializer.initialize(ConfigBasedEntriesContainerInitializer.java:26)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager$1.run(PathEntryManager.java:740)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getPathEntryContainer(PathEntryManager.java:730)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getPathEntryContainer(PathEntryManager.java:694)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:540)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:518)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:504)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreChangedOperation.executeOperation(PathEntryStoreChangedOperation.java:41)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.pathEntryStoreChanged(PathEntryManager.java:1285)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.notifyListeners(PathEntryStoreProxy.java:68)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.fireContentChangedEvent(PathEntryStoreProxy.java:61)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.postProcessProviderChange(PathEntryStoreProxy.java:152)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.checkUpdateProvider(AbstractCExtensionProxy.java:121)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.doHandleEvent(AbstractCExtensionProxy.java:167)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.doHandleEvent(PathEntryStoreProxy.java:158)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.handleEvent(AbstractCExtensionProxy.java:154)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.notifyListeners(CProjectDescriptionManager.java:2410)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.fireLoadedEvent(AbstractCProjectDescriptionStorage.java:268)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:262)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:440)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:422)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:416)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:409)
+	at com.freescale.core.ide.projectsview.engine.IColumn.manages(IColumn.java:285)
+	at com.freescale.core.ide.projectsview.engine.IColumn$3.runInCommonThread(IColumn.java:221)
+	at org.eclipse.core.runtime.jobs.CommonJob.runInThread(CommonJob.java:144)
+	at org.eclipse.core.runtime.jobs.CommonJob.access$0(CommonJob.java:137)
+	at org.eclipse.core.runtime.jobs.CommonJob$ExecuteContext.run(CommonJob.java:37)
+	at org.eclipse.core.runtime.jobs.CommonJob$Manager$2.run(CommonJob.java:98)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.core 4 969 2018-06-26 22:50:48.153
+!MESSAGE Element  does not exist.
