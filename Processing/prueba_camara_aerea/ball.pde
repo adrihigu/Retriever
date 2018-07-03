@@ -34,7 +34,7 @@ static class Ball{
     ballColor.set(bColor);
     radius.set(r);
     lostFlag.set(0);
-    println("pelota nueva " + bColor);
+    //println("pelota nueva " + bColor);
   }
   public void set(float posX, float posY, float r, String bColor){
     x.set(posX);
