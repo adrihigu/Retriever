@@ -1,0 +1,55 @@
+<CodeGenerationInfo>
+  <ToolchainSettings>
+    <option>
+      <name>PE_G_4PEx_ToolChain_Compiler_SearchUserPaths</name>
+      <values lines_count="2">
+        <Line>"${ProjDirPath}/Sources"</Line>
+        <Line>"${ProjDirPath}/Generated_Code"</Line>
+      </values>
+    </option>
+  </ToolchainSettings>
+  <GeneratedFilesList>
+    <GeneratedByPE>
+      <File Name="Generated_Code/PE_Timer.h" FileDate="2018-07-04, 13:52:16" FileAge="1530728536910" FileType="45637" />
+      <File Name="Generated_Code/PE_Timer.c" FileDate="2018-07-04, 13:52:16" FileAge="1530728536896" FileType="45637" />
+      <File Name="Generated_Code/PWM1p.h" FileDate="2018-07-04, 13:52:17" FileAge="1530728537288" FileType="45637" CompNumb="8" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2018-07-04, 13:52:16" FileAge="1530728536879" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/PWM1p.c" FileDate="2018-07-04, 13:52:17" FileAge="1530728537273" FileType="45637" CompNumb="8" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2018-07-04, 13:52:16" FileAge="1530728536864" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/BitM2m.h" FileDate="2018-07-04, 13:52:17" FileAge="1530728537187" FileType="45637" CompNumb="12" />
+      <File Name="Generated_Code/Vectors.c" FileDate="2018-07-04, 13:52:16" FileAge="1530728536847" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/BitM2m.c" FileDate="2018-07-04, 13:52:17" FileAge="1530728537175" FileType="45637" CompNumb="12" />
+      <File Name="Documentation/carrito_Settings.xml" FileDate="2018-07-04, 13:16:28" FileAge="1530726388000" FileType="3072" />
+      <File Name="Documentation/carrito_SIGNALS.txt" FileDate="2018-07-04, 13:52:17" FileAge="1530728537338" FileType="3072" />
+      <File Name="Generated_Code/PE_Const.h" FileDate="2018-07-04, 13:52:16" FileAge="1530728536970" FileType="45637" />
+      <File Name="Generated_Code/TI2.h" FileDate="2018-07-04, 13:52:17" FileAge="1530728537024" FileType="45637" CompNumb="57" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2018-07-04, 13:52:16" FileAge="1530728536997" FileType="45637" />
+      <File Name="Generated_Code/PE_Error.h" FileDate="2018-07-04, 13:52:16" FileAge="1530728536982" FileType="45637" />
+      <File Name="Generated_Code/TI2.c" FileDate="2018-07-04, 13:52:17" FileAge="1530728537010" FileType="45637" CompNumb="57" />
+      <File Name="Generated_Code/BitsPTA23.h" FileDate="2018-07-04, 13:52:17" FileAge="1530728537079" FileType="45637" CompNumb="15" />
+      <File Name="Generated_Code/TI1.h" FileDate="2018-07-04, 13:52:17" FileAge="1530728537233" FileType="45637" CompNumb="10" />
+      <File Name="Generated_Code/BitsPTA23.c" FileDate="2018-07-04, 13:52:17" FileAge="1530728537063" FileType="45637" CompNumb="15" />
+      <File Name="Sources/Events.h" FileDate="2018-07-04, 13:21:50" FileAge="1530726710000" FileType="131328" />
+      <File Name="Generated_Code/BitsPTE67.h" FileDate="2018-07-04, 13:52:17" FileAge="1530728537050" FileType="45637" CompNumb="47" />
+      <File Name="Generated_Code/TI1.c" FileDate="2018-07-04, 13:52:17" FileAge="1530728537220" FileType="45637" CompNumb="10" />
+      <File Name="Documentation/carrito.txt" FileDate="2018-07-04, 13:52:17" FileAge="1530728537564" FileType="3072" />
+      <File Name="Sources/Events.c" FileDate="2018-07-04, 13:22:06" FileAge="1530726726000" FileType="131328" />
+      <File Name="Generated_Code/PWM2p.h" FileDate="2018-07-04, 13:52:17" FileAge="1530728537260" FileType="45637" CompNumb="9" />
+      <File Name="Sources/main.c" FileDate="2018-07-04, 13:41:46" FileAge="1530727906000" FileType="128" />
+      <File Name="Generated_Code/BitsPTE67.c" FileDate="2018-07-04, 13:52:17" FileAge="1530728537037" FileType="45637" CompNumb="47" />
+      <File Name="Project_Settings/Linker_Files/ProcessorExpert.lcf" FileDate="2018-05-03, 17:53:14" FileAge="1525386194000" FileType="8" CompNumb="4" />
+      <File Name="Generated_Code/PWM2p.c" FileDate="2018-07-04, 13:52:17" FileAge="1530728537246" FileType="45637" CompNumb="9" />
+      <File Name="Generated_Code/BitsPTD23.h" FileDate="2018-07-04, 13:52:17" FileAge="1530728537105" FileType="45637" CompNumb="31" />
+      <File Name="Generated_Code/ASPC.h" FileDate="2018-07-04, 13:52:17" FileAge="1530728537135" FileType="45637" CompNumb="21" />
+      <File Name="Generated_Code/AD1.h" FileDate="2018-07-04, 13:52:17" FileAge="1530728537162" FileType="45637" CompNumb="16" />
+      <File Name="Generated_Code/BitsPTD23.c" FileDate="2018-07-04, 13:52:17" FileAge="1530728537093" FileType="45637" CompNumb="31" />
+      <File Name="Generated_Code/ASPC.c" FileDate="2018-07-04, 13:52:17" FileAge="1530728537121" FileType="45637" CompNumb="21" />
+      <File Name="Generated_Code/AD1.c" FileDate="2018-07-04, 13:52:17" FileAge="1530728537149" FileType="45637" CompNumb="16" />
+      <File Name="Generated_Code/BitM1m.h" FileDate="2018-07-04, 13:52:17" FileAge="1530728537209" FileType="45637" CompNumb="11" />
+      <File Name="Generated_Code/BitM1m.c" FileDate="2018-07-04, 13:52:17" FileAge="1530728537198" FileType="45637" CompNumb="11" />
+      <File Name="Generated_Code/IO_Map.h" FileDate="2018-07-04, 13:52:16" FileAge="1530728536957" FileType="45637" />
+      <File Name="Generated_Code/IO_Map.c" FileDate="2018-07-04, 13:52:16" FileAge="1530728536925" FileType="45637" />
+    </GeneratedByPE>
+  </GeneratedFilesList>
+  <CodeGenReference>60</CodeGenReference>
+</CodeGenerationInfo>
