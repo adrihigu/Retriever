@@ -1,14 +1,14 @@
 <Analysispoints>
 	<Name>AnalysispointsManager</Name>
-    <ProjectPath></ProjectPath>
-    <MaxNumberOfCores>1</MaxNumberOfCores>
+	<ProjectPath>C:/Users/Ruben/Documents/GitHub/Retriever/WSRetriever/carrito/SaAnalysispointsManager.apconfig</ProjectPath>
+	<MaxNumberOfCores>1</MaxNumberOfCores>
 	<Comments>Analysispoints Manager</Comments>
 	<IgnoreAll>false</IgnoreAll>
 	<SpecializedManager>
 		<Name>Cfv1TracepointsManager</Name>
 		<Comments>Cfv1 Tracepoints Manager</Comments>
 	</SpecializedManager>
-    <Core>
+	<Core>
 		<Name>0</Name>
-    </Core>
+	</Core>
 </Analysispoints>
