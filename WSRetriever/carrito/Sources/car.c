@@ -172,7 +172,6 @@ errorType startDoggy(void){
 }
   
 errorType car_Init(){
-  unsigned short pepe = 0;
   wait(5000);
   printLn("Reiniciando camara...");
   camCMDSync("RS");

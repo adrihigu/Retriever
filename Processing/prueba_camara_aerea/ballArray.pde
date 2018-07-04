@@ -28,7 +28,7 @@ static class BallArray{
   private void updateBall(float x, float y, float r, String c, int id){
     balls.get(id).set(x, y, r, c);
   }
-  public void startDataRequests(){
+  private void startDataRequests(){
     //JSONArray json = parent.loadJSONArray(camServer);
     if(!requestDataFlag){
       //println("iniciando hilo");
@@ -40,9 +40,21 @@ static class BallArray{
       t.start();
     }
   }
-  public void stopDataRequests(){
+  private void stopDataRequests(){
     //println("terminando hilo");
     requestDataFlag = false;
+  }
+  public void start(){
+    stopDataRequests();
+    startDataRequests();
+  }
+  public void reStart(){
+    stopDataRequests();
+    parent.delay(20);
+    startDataRequests();
+  }
+  public void stop(){
+    stopDataRequests();
   }
   public void display(){
     //println("mostrando las bolas");

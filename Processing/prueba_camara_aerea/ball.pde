@@ -24,9 +24,9 @@ static class Ball{
   
   Ball(float posX, float posY, float r, String bColor, prueba_camara_aerea p){
     parent = p;
-    x = parent.new AtomicFloat();
-    y = parent.new AtomicFloat();
-    radius = parent.new AtomicFloat();
+    x = new AtomicFloat();
+    y = new AtomicFloat();
+    radius = new AtomicFloat();
     lostFlag = new AtomicInteger();
     ballColor = new AtomicReference<String>();
     x.set(posX);

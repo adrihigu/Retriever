@@ -1,7 +1,7 @@
 import java.util.concurrent.atomic.AtomicInteger;
 import static java.lang.Float.*;
 
-class AtomicFloat extends Number {
+static class AtomicFloat extends Number {
 
     private AtomicInteger bits;
 
