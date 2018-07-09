@@ -144,28 +144,17 @@ void main(void)
 		if(movRx){
 			// RUTINA DE asignación de MOVIMIENTO
 			duty = (duty * 100)/0x7FFF;
+			dutySide = (dutySide * 100)/0x7FFF;
 			dutyFix = (dutyFix * 100)/0xFFFF;
-			if(M1m){
-				if(dutySide >= 0){
-					dutySide = (dutySide * 100)/0x7FFF;
-					freeRun((unsigned char)duty,(unsigned char)(duty+dutySide+dutyFix),BWD);
-				}
-				if(dutySide < 0){
-					dutySide = (dutySide * 100)/(0x7FFF);
-					freeRun((unsigned char)(duty-dutySide),(unsigned char)(duty + dutyFix),BWD);
-				}
+			if(dutySide >= 0){
+				freeLeft((unsigned char)duty,M1m);
+				freeRight((unsigned char)(duty+dutySide+dutyFix),M2m);
 			}
-			else{
-				if(dutySide >= 0){
-					dutySide = (dutySide * 100)/0x7FFF;
-					freeRun((unsigned char)duty,(unsigned char)(duty+dutySide+ dutyFix),FWD);
-				}
-				if(dutySide < 0){
-					dutySide = (dutySide * 100)/0x7FFF;
-					freeRun((unsigned char)(duty-dutySide),(unsigned char)(duty+ dutyFix),FWD);
-				}
+			if(dutySide < 0){
+				freeLeft((unsigned char)(duty-dutySide),M1m);
+				freeRight((unsigned char)(duty+dutyFix),M2m);
 			}
-		movRx = FALSE;
+			movRx = FALSE;
 		}
 
 		// Mide los sensores digitales
