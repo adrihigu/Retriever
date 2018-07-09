@@ -11,6 +11,7 @@ static class BallArray{
   private final prueba_camara_aerea parent;
   private Boolean requestDataFlag;
   private Runnable ballUpdateThread;
+  private Car car;
   
   BallArray(float cW, float cH, float rCW, float rCH, float cX, float cY, prueba_camara_aerea p){
     COURT_WIDTH = cW;

@@ -76,8 +76,8 @@ int game = 0;                              // Juego actual: 0 -> Buscar pelota; 
 int dutySide = 0;                              // Factor de giro
 int duty = 0;                                  // Velocidad de movimiento frontal
 int dutyFix = 0;                          // Corrección añadida a la rueda izquierda
-boolean M1mTx = false;                             // true: rueda IZQUIERDA en retroceso
-boolean M2mTx = false;                             // true: rueda DERECHA en retroceso
+int M1mTx = 0;                             // true: rueda IZQUIERDA en retroceso
+int M2mTx = 0;                             // true: rueda DERECHA en retroceso
 // Variables de interfaz de usuario
 
 ControlP5 cp5;
@@ -240,17 +240,26 @@ void setup(){
   cp5.getController("dutyFix").getValueLabel().align(ControlP5.LEFT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
   cp5.getController("dutyFix").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
       
-   cp5.addSlider("Retroceso")
+   cp5.addSlider("M2mTx")
      .setPosition(50,300)
-     .plugTo(M1mTx)
-     .plugTo(M2mTx)
+     //.plugTo(M1mTx)
+     //.plugTo(M2mTx)
      .setWidth(40)
      .setHeight(20)
      .setRange(0,1) // values can range from big to small as well
      .setNumberOfTickMarks(2)
      .setSliderMode(Slider.FLEXIBLE)
      ;
-     
+   cp5.addSlider("M1mTx")
+     .setPosition(150,300)
+     //.plugTo(M1mTx)
+     //.plugTo(M2mTx)
+     .setWidth(40)
+     .setHeight(20)
+     .setRange(0,1) // values can range from big to small as well
+     .setNumberOfTickMarks(2)
+     .setSliderMode(Slider.FLEXIBLE)
+     ;
   if(!manual){
     cp5.getController("duty").lock();
     cp5.getController("dutySide").lock();
@@ -309,7 +318,7 @@ void encodeMov(){
   txBuffer[byteTx] = byte((dutySide & 0x000C000) >> 14);
   txBuffer[byteTx+1] = byte((dutySide & 0x00003F80) >> 7);
   txBuffer[byteTx+2] = byte(dutySide & 0x0000007F);
-  txBuffer[byteTx+3] = byte((((M1mTx == true) ? 1 : 0) << 3) + (((M2mTx == true) ? 1 : 0) << 2) + ((duty & 0x000C000) >> 14));
+  txBuffer[byteTx+3] = byte((M1mTx << 3) + (M2mTx << 2) + ((duty & 0x000C000) >> 14));
   txBuffer[byteTx+4] = byte((duty & 0x00003F80) >> 7);
   txBuffer[byteTx+5] = byte(duty & 0x0000007F);
   txBuffer[byteTx+6] = byte((dutyFix & 0x000C000) >> 14);

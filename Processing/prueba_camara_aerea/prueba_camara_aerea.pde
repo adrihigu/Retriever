@@ -40,7 +40,12 @@ private class Court{
     cHeight = cH;
     center = new PVector(x,y);
   }
-
+  public float getWidth(){
+    return cWidth;
+  }
+  public float getHeight(){
+    return cHeight;
+  }
   public void display(){
     stroke(255);
     strokeWeight(2);

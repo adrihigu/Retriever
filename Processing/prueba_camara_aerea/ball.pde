@@ -11,6 +11,8 @@ static class Ball{
   private AtomicInteger lostFlag;
   private final prueba_camara_aerea parent;
   private static final Map<String, Integer> colorMap;
+  private Trajectory path;
+  private Car car;
   static{
     Map<String, Integer>tempMap = new HashMap<String, Integer>();
     tempMap.put("RED", #FF0000);
@@ -22,7 +24,7 @@ static class Ball{
     colorMap = Collections.unmodifiableMap(tempMap);
   }
   
-  Ball(float posX, float posY, float r, String bColor, prueba_camara_aerea p){
+  Ball(float posX, float posY, float r, String bColor, Car c, float endX, prueba_camara_aerea p){
     parent = p;
     x = new AtomicFloat();
     y = new AtomicFloat();
@@ -34,6 +36,8 @@ static class Ball{
     ballColor.set(bColor);
     radius.set(r);
     lostFlag.set(0);
+    this.car = c;
+    path = new Trajectory(car.getPos(), getPos(), new PVector(getX(), endX));
     //println("pelota nueva " + bColor);
   }
   public void set(float posX, float posY, float r, String bColor){
@@ -41,6 +45,7 @@ static class Ball{
     y.set(posY);
     ballColor.set(bColor);
     radius.set(r);
+    path = new Trajectory(car.getPos(), getPos(), new PVector(getX(), endX));
   }
   public void setLost(int f){
     lostFlag.set(f);
@@ -57,14 +62,14 @@ static class Ball{
   public color getColor(){
     return colorMap.get(ballColor.get()).intValue();
   }
-  public PVector getPos(){
-    return new PVector(getX(), getY());
-  }
   public float getX(){
     return x.get();
   }
   public float getY(){
     return y.get();
+  }
+  public PVector getPos(){
+    return new PVector(getX(), getY());
   }
   public float getRadius(){
     return radius.get();
