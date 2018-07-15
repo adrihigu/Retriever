@@ -140,7 +140,7 @@ def main():
     if args["image"] == None:
         # Initialize camera input
         cap = cv2.VideoCapture(args["camera"])
-        # cap = cv2.VideoCapture("rtsp://192.168.2.3:8080/h264_pcm.sdp")
+        # cap = cv2.VideoCapture("rtsp://192.168.1.101:8080/h264_pcm.sdp")
         ret, calib_frame = cap.read()
     else:
         # Load image from Disk

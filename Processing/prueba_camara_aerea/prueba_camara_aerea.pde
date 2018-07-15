@@ -2,13 +2,14 @@ final float COURT_WIDTH = 300;
 final float COURT_HEIGHT = 300;
 final float REAL_COURT_WIDTH = 1;
 final float REAL_COURT_HEIGHT = 1;
-
+Car car;
 BallArray balls;
 Court court;
 
 void setup() {
   size(640, 360);
-  balls = new BallArray(COURT_WIDTH,COURT_HEIGHT, REAL_COURT_WIDTH, REAL_COURT_HEIGHT, width/2, height/2, this);
+  car = new Car(30, 60, "CYAN", "BLUE", this);
+  balls = new BallArray(COURT_WIDTH,COURT_HEIGHT, REAL_COURT_WIDTH, REAL_COURT_HEIGHT, width/2, height/2, car, this);
   court = new Court(COURT_WIDTH, COURT_HEIGHT, width/2, height/2);
   // start server data retrieval
   balls.start();
@@ -18,6 +19,7 @@ void draw() {
   background(0);
   noFill();
   court.display();
+  car.display();
   balls.display();
 }
 
@@ -39,6 +41,9 @@ private class Court{
     cWidth = cW;
     cHeight = cH;
     center = new PVector(x,y);
+  }
+  public PVector getPos(){
+    return center.copy();
   }
   public float getWidth(){
     return cWidth;

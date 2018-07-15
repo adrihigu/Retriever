@@ -24,7 +24,7 @@ static class Ball{
     colorMap = Collections.unmodifiableMap(tempMap);
   }
   
-  Ball(float posX, float posY, float r, String bColor, Car c, prueba_camara_aerea p){
+  Ball(float posX, float posY, float r, String bColor, prueba_camara_aerea p){
     parent = p;
     x = new AtomicFloat();
     y = new AtomicFloat();
@@ -36,8 +36,7 @@ static class Ball{
     ballColor.set(bColor);
     radius.set(r);
     lostFlag.set(0);
-    car = c;
-    path = parent.new Trajectory(car.getPos(), getPos(), new PVector(getX(), parent.court.getPos().y+parent.court.getHeight()/2));
+    path = new Trajectory(car, ball, new PVector(ball.x, end.y));
     //println("pelota nueva " + bColor);
   }
   public void set(float posX, float posY, float r, String bColor){
@@ -45,7 +44,6 @@ static class Ball{
     y.set(posY);
     ballColor.set(bColor);
     radius.set(r);
-    path = parent.new Trajectory(car.getPos(), getPos(), new PVector(getX(), parent.court.getPos().y+parent.court.getHeight()/2));
   }
   public void setLost(int f){
     lostFlag.set(f);
@@ -62,9 +60,6 @@ static class Ball{
   public color getColor(){
     return colorMap.get(ballColor.get()).intValue();
   }
-  public String getBallColor(){
-    return ballColor.get();
-  }
   public PVector getPos(){
     return new PVector(getX(), getY());
   }
@@ -80,6 +75,6 @@ static class Ball{
   public void display(){
     parent.noStroke();
     parent.fill(getColor());
-    parent.ellipse(getX(), getY(), getRadius()*2, getRadius()*2);
+    parent.ellipse(getX(), getY(), getRadius(), getRadius());
   }
 }

@@ -32,9 +32,9 @@ class ColorTracker:
 
 
         # Percentage margin for hue, saturation and value.
-        self.margins = { "hue": 0.05,
-                        "saturation": 0.3,
-                        "value": 0.3
+        self.margins = { "hue": 0.01,
+                        "saturation": 0.4,
+                        "value": 0.15
                         }
         # self.margins = { "hue": 0.05,
         #                 "saturation": 0.2,

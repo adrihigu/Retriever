@@ -8,12 +8,12 @@ class Trajectory{
     float end_dist = PVector.dist(ball, end);
     float end_res = res/end_dist;
     vertices = new ArrayList<PVector>();
-    vertices.add(ball.copy());
+    vertices.add(new PVector(ball.x, ball.y - 40));
     while(PVector.dist(vertices.get(vertices.size() -1), end) >= res){
       PVector last = vertices.get(vertices.size() -1);
       vertices.add(PVector.lerp(last, end, end_res));
     }
-    println("A");
+    //println("A");
     //println(PVector.angleBetween(PVector.sub(vertices.get(0), vertices.get(1)), PVector.sub(car, vertices.get(0))));
     float angle_diff = PVector.angleBetween(PVector.sub(vertices.get(0), vertices.get(1)), PVector.sub(car, vertices.get(0)));
     float angle_dir = 0; // = (car.x - vertices.get(0).x) > 0? 1 : -1;
@@ -25,7 +25,7 @@ class Trajectory{
     //  angle_dir = cos(dist.heading()) >= 0?  1 : -1;
     //}
     angle_dir = cos(dist.heading()) >= 0?  1 : -1;
-    print(angle_dir);
+    //print(angle_dir);
     while( angle_diff > max_angle && PVector.dist(vertices.get(0), car) >= res){
       dir = PVector.sub(vertices.get(0), vertices.get(1)).normalize();
       dist = PVector.sub(car, vertices.get(0)).normalize();

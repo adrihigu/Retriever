@@ -7,12 +7,13 @@ static class Car{
   private final float cHeight;
   private final String frontColor;
   private final String backColor;
-  private BallArray balls;
+  //private BallArray balls;
   private final int carColor;
   private final prueba_camara_aerea parent;
   private final PShape carShape;
 
-  Car(float cW, float cH, String fColor, String bColor, BallArray b, prueba_camara_aerea p){
+  Car(float cW, float cH, String fColor, String bColor, prueba_camara_aerea p){
+  //Car(float cW, float cH, String fColor, String bColor, BallArray b, prueba_camara_aerea p){
     parent = p;
     x = new AtomicFloat();
     y = new AtomicFloat();
@@ -22,7 +23,7 @@ static class Car{
     cHeight = cH;
     frontColor = fColor;
     backColor = bColor;
-    balls = b;
+    //balls = b;
     carColor = #808080;
     carShape = parent.createShape();
     carShape.beginShape();
