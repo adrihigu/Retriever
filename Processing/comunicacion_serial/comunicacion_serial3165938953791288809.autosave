@@ -120,8 +120,8 @@ void setup(){
   noStroke();
 
   court_center = new PVector(width - COURT_WIDTH/2, height/2); // Cancha a la derecha de la GUI
-  carrito = new Car(CAR_W, CAR_H, BBALL_COLOR, FBALL_COLOR, this);
   ballArray = new BallArray(COURT_WIDTH, COURT_HEIGHT, COURT_REAL_WIDTH, COURT_REAL_HEIGHT, court_center.x, court_center.y, carrito, this);
+  carrito = new Car(CAR_W, CAR_H, BBALL_COLOR, FBALL_COLOR, this);
   trajectory = new PathPlanner(ballArray, carrito, WAITING, this); // Args: (BallArray ballArray, int mode)
                                                    // mode: WAITING, RETURN_ONEBALL, RETURN_ALLBALL, RETURN 
   myPort = new Serial(this, Serial.list()[1], 9620);
@@ -130,18 +130,16 @@ void setup(){
   cp5 = new ControlP5(this);
   
   initGUI();
-  ballArray.start();
 }
 
 void draw(){
   background(200);
   checkOn();
-  //println("mode :", mode, " tmode: ", trajectory.mode);
+  println("mode :", mode, " tmode: ", trajectory.mode);
   if(on){
     if(trajectory.hasFinished()){ //<>//
       text("Objetivo Completado!", 50, 15);
       //on = false;
-      cp5.getController("on").setValue(0);
     }
     else{
       if(isTrajectory){
@@ -151,11 +149,6 @@ void draw(){
         text("NO SE ENCUENTRA UN CAMINO HACIA EL OBJETIVO", 50, 15);
       }
     }
-  }
-  else{
-    duty = 0;
-    dutySide = 0;
-    // todo : m1 m2
   }
 
   if(txOK == false){
@@ -170,7 +163,6 @@ void checkOn(){
   }
   if(!on & pre_on){
     mode = WAITING;
-    cp5.getController("mode").setValue(WAITING);
     trajectory.set(mode);
   }
   pre_on = on;
@@ -183,7 +175,7 @@ void controlMov(){
   float currentAngle;
 
   current_move = new PVector(trajectory.getGoal().x-carrito.getX(), trajectory.getGoal().y-carrito.getY());
-  currentAngle = getAngle(new PVector(carrito.getDirX(),carrito.getDirY())) - getAngle(current_move);
+  currentAngle = getAngle(carrito.getPos()) - getAngle(current_move);
   dutySide = DUTYFIX;
 
   if(abs(currentAngle) < CAR_ANGLE_MARGIN){
@@ -196,7 +188,6 @@ void controlMov(){
       }
       else{
         mode = COME_BACK;
-        cp5.getController("mode").setValue(COME_BACK);
         trajectory.set(mode); // En la clase, siempre se recalcula
         isTrajectory = trajectory.update();
       }
@@ -216,13 +207,8 @@ void controlMov(){
     else{
       M1mTx = true;
       M2mTx = false;
-    } 
+    }
   }
-  
-  cp5.getController("Retroceso izquierda").setValue(M1mTx?1:0); //<>//
-  cp5.getController("Retroceso derecha").setValue(M2mTx?1:0);
-  cp5.getController("DUTYSIDE").setValue(dutySide);
-  cp5.getController("DUTY").setValue(duty);
 }
 
 float getAngle(PVector vector){
@@ -327,47 +313,47 @@ void serialEvent(Serial myPort) {
   syncronize();                                // Verifica si el buffer está sincronizado
   if(sync){
     if(rxBuffer[0] >= 0){                      // Si hay sincronizacion y si no se está leyendo un encabezado...
-      //println("----NUEVO PAQUETE----");
+      println("----NUEVO PAQUETE----");
       if(pwmRx){
         decodePWM();                           // Decodifica las señales de los PWM: M1+, M1-, M2+ ,M2-
-        //println("duty = " + dutyRx);
-        //println("dutySide = " + dutySideRx);
-        //println("dutyFix = " + dutyFixRx);
-        //println("M1m = " + M1mRx);
-        //println("M2m = " + M2mRx);
+        println("duty = " + dutyRx);
+        println("dutySide = " + dutySideRx);
+        println("dutyFix = " + dutyFixRx);
+        println("M1m = " + M1mRx);
+        println("M2m = " + M2mRx);
       }
       
       if(sensRx){        
         decodeSens();                          // Decodifica los sensores digitales y la medida del potenciómetro (10 bits)
-        //println("dig1 = " + dig1);
-        //println("dig2 = " + dig2);
-        //println("dig3 = " + dig3);
-        //println("dig4 = " + dig4);
-        //println("pot = " + pot);
+        println("dig1 = " + dig1);
+        println("dig2 = " + dig2);
+        println("dig3 = " + dig3);
+        println("dig4 = " + dig4);
+        println("pot = " + pot);
       }
       
       if(eventRx){        
         decodeEvent();                         // Decodifica los eventos
-        //println("on = " + onRx);
-        //println("game = " + gameRx);
-        //println("e0Rx = " + e0Rx);
-        //println("e1Rx = " + e1Rx);
-        //println("e2Rx = " + e2Rx);
-        //println("e3Rx = " + e3Rx);
-        //println("e4Rx = " + e4Rx);
+        println("on = " + onRx);
+        println("game = " + gameRx);
+        println("e0Rx = " + e0Rx);
+        println("e1Rx = " + e1Rx);
+        println("e2Rx = " + e2Rx);
+        println("e3Rx = " + e3Rx);
+        println("e4Rx = " + e4Rx);
       }
       
       if(camBytesRx != 0 ){
         decodeCam();                           // Decodifica los resultados de la CMUcam
       }
       
-      //println("sharpVolt = " + (rxBuffer[byteRx] & 0x7F));
+      println("sharpVolt = " + (rxBuffer[byteRx] & 0x7F));
       sharpBuffer.append(decodeSharp());    // Decodifica la señal del infrarrojo (7 bits)
 
       if(sharpBuffer.size() > 100){
         sharpBuffer.remove(0);
       }
-      //println("sharpDist = " + sharpBuffer.get(sharpBuffer.size()-1));
+      println("sharpDist = " + sharpBuffer.get(sharpBuffer.size()-1));
     }
     //println("NXTHeader = " + rxBuffer[bufferSize-1]);
     readNextHeader();    // Lee el encabezado del siguiente bloque
@@ -542,6 +528,7 @@ void readNextHeader(){
 
 void initGUI(){
   cp5.addToggle("on")
+   // .plugTo(on)
    .setPosition(50,50)
    .setSize(40,20)
    ;
@@ -550,7 +537,6 @@ void initGUI(){
   cp5.addSlider("DUTY")
     .setPosition(50,150)
     .plugTo(duty)
-    .lock()
     .setSize(300,20)
     .setRange(0,32767)
     ;
@@ -565,7 +551,6 @@ void initGUI(){
      .plugTo(dutySide)
      .setSize(300,20)
      .setRange(-16384,16383)
-     .lock()
      ;
   
   // reposition the Label for controller 'slider'
@@ -573,20 +558,18 @@ void initGUI(){
   cp5.getController("DUTYSIDE").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
    
 
-  cp5.addSlider("Retroceso derecha")
+  cp5.addSlider("Retroceso Derecha")
     .setPosition(50,250)
     .plugTo(M2mTx)
-    .lock()
     .setWidth(40)
     .setHeight(20)
     .setRange(0,1) // values can range from big to small as well
     .setNumberOfTickMarks(2)
     .setSliderMode(Slider.FLEXIBLE)
     ;
-  cp5.addSlider("Retroceso izquierda")
+  cp5.addSlider("Retroceso Izquierda")
     .setPosition(250,250)
     .plugTo(M1mTx)
-    .lock()
     .setWidth(40)
     .setHeight(20)
     .setRange(0,1) // values can range from big to small as well
@@ -598,6 +581,7 @@ void initGUI(){
    .setPosition(50,300)
    .setWidth(300)
    .setHeight(20)
+   //.plugTo(mode)
    .setRange(0,4) // values can range from big to small as well
    .setNumberOfTickMarks(5)
    .setSliderMode(Slider.FLEXIBLE)
