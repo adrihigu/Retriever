@@ -118,7 +118,7 @@ static class BallArray{
                 IntList updatedBalls = new IntList();
                 for (int i = 0; i < json.size(); i++) {
                   //boolean ballRecognized = false;
-                  PVector newBallPos = translateCoordinate(json.getJSONArray(i).getJSONArray(0).getFloat(0),json.getJSONArray(i).getJSONArray(0).getFloat(1));
+                  PVector newBallPos = new PVector(json.getJSONArray(i).getJSONArray(0).getFloat(0),json.getJSONArray(i).getJSONArray(0).getFloat(1));
                   //println(json.getJSONArray(i).getString(2));
                   //for (int j = 1; j <= balls.size(); j++) {
                   //  //println(j);
@@ -131,16 +131,16 @@ static class BallArray{
                   //    break;
                   //  }
                   //}
-                  int ballRecognized = updateClosest(newBallPos, convertFloatToPixel(json.getJSONArray(i).getFloat(1)), json.getJSONArray(i).getString(2), updatedBalls);
+                  int ballRecognized = updateClosest(newBallPos, (json.getJSONArray(i).getFloat(1)), json.getJSONArray(i).getString(2), updatedBalls);
                   
                   if(ballRecognized != 0? false : true){
                     //println("agregando pelota nueva");
-                    addBall(newBallPos.x, newBallPos.y ,convertFloatToPixel(json.getJSONArray(i).getFloat(1)), json.getJSONArray(i).getString(2));
+                    addBall(newBallPos.x, newBallPos.y ,(json.getJSONArray(i).getFloat(1)), json.getJSONArray(i).getString(2));
                     updatedBalls.append(i+1);
                   }else{
                     updatedBalls.append(ballRecognized);
                   }
-                   if(balls.get(i+1).getBallColor().equals("BLUE")){
+                   if(balls.get(i+1).getBallColor().equals("YELLOW")){
                      bBall = balls.get(i+1).getPos();
                    }
                    else if(balls.get(i+1).getBallColor().equals("CYAN")){
@@ -161,13 +161,13 @@ static class BallArray{
               ms = parent.millis();
               //println("updatecar");
               //println("CYAN: ", fBall, " | BLUE: ", bBall);
-              if(fBall.x == 0 && fBall.y == 0){ //<>//
+              if(fBall.x == 0 && fBall.y == 0){
                 fBall = car.getPosF();
               }
               if(bBall.x == 0 && bBall.y == 0){
                 bBall = car.getPosB();
               }
-              car.set(fBall.x, fBall.y, bBall.x, bBall.y); //<>//
+              car.set(fBall.x, fBall.y, bBall.x, bBall.y);
               //car.setMatrix();
               //println("updatedCar");
               // if(car.getPos().mag() == 0){

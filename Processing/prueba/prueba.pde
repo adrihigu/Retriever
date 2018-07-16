@@ -3,17 +3,24 @@ PVector bf;
 PVector bb;
 float angle = 0;
 float r;
-  private final int WAITING = 0;
-  private final int RETURN_ONEBALL = 1;
-  private final int RETURN_ALLBALL = 2;
-  private final int TRACK = 3;
-  private final int REACH = 5;
-  private final int _RETURN = 4;
+private final float ROT_CONST = 60/(-0.15667194361495884);
+private final float LIN_CONST = 60/(-33.2951329424252);
+
+public static final float CAR_DISTANCE_MARGIN = 5; // 5 cm
+public static final float CAR_ANGLE_MARGIN = PI/18; // 10º
+
+private final int WAITING = 0;
+private final int RETURN_ONEBALL = 1;
+private final int RETURN_ALLBALL = 2;
+private final int TRACK = 3;
+private final int REACH = 5;
+private final int _RETURN = 4;
 double duty = 0;
 double dutySide;
 PVector ball;
 int m1 = 1;
 int m2 = 1;
+int ds = 0;
 PathPlanner traj;
 
 void setup() {
@@ -58,9 +65,9 @@ void draw() {
   }
   if(traj.applyPath()){
     updateCar();
-    println("wop");
+    //println("wop");
   }
-  println(duty);
+  //println(duty);
 }
 
 void mouseReleased(){
@@ -91,6 +98,13 @@ void updateCar(){
   }else{
     bf.add(car.getDir().mult(-(float)duty));
     bb.add(car.getDir().mult(-(float)duty));
+    //PVector hehexd = car.getDir().normalize().rotate(-HALF_PI).setMag(width/64).add(car.getPos());
+    
+    PVector hehexd = car.getPos();
+    PVector rotF = bf.copy().sub(hehexd);
+    PVector rotB = bb.copy().sub(hehexd);
+    bf = hehexd.copy().add(rotF.rotate(dir*(float)dutySide));
+    bb = hehexd.copy().add(rotB.rotate(dir*(float)dutySide));
   }
   car.set(bf.x,bf.y,bb.x,bb.y);
   car.setMatrix();

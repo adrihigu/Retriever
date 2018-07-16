@@ -72,4 +72,8 @@ static class Car{
   public void display(){
     parent.shape(carShape, 0,0);
   }
+  private ArrayList<PVector> pathToBall(int index){
+    
+  }
+
 }

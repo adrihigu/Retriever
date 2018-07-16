@@ -10,8 +10,8 @@ public static final int RETURN_ALLBALL = 2;
 public static final int TRACK = 3;
 public static final int COME_BACK = 4;
 
-public static final float CAR_DISTANCE_MARGIN = 5; // 5 cm
-public static final float CAR_ANGLE_MARGIN = PI/18; // 10º
+public static final float CAR_DISTANCE_MARGIN = 10; // 8 cm
+public static final float CAR_ANGLE_MARGIN = PI/18; // 15º
 
 public static final int DUTYFIX = int((-3*0xFFFF)/100);  // -3%
 
@@ -98,7 +98,7 @@ int duty = 0;                                  // Velocidad de movimiento fronta
 int dutyFix = 0;                          // Corrección añadida a la rueda izquierda
 boolean M1mTx = false;                             // true: rueda IZQUIERDA en retroceso
 boolean M2mTx = false;                    // true: rueda DERECHA en retroceso
-
+int ds = 0;
 // Variables de juego
 PathPlanner trajectory;
 boolean isTrajectory;
@@ -108,6 +108,7 @@ Car carrito;
 int mode;
 boolean pre_on = false;
 float goalDistance;
+PVector preGoal;
 
 // Variables de interfaz de usuario
 ControlP5 cp5;
@@ -122,7 +123,7 @@ void setup(){
   court_center = new PVector(width - COURT_WIDTH/2, height/2); // Cancha a la derecha de la GUI
   carrito = new Car(CAR_W, CAR_H, BBALL_COLOR, FBALL_COLOR, this);
   ballArray = new BallArray(COURT_WIDTH, COURT_HEIGHT, COURT_REAL_WIDTH, COURT_REAL_HEIGHT, court_center.x, court_center.y, carrito, this);
-  trajectory = new PathPlanner(ballArray, carrito, WAITING, this); // Args: (BallArray ballArray, int mode)
+  trajectory = new PathPlanner(carrito, WAITING, this); // Args: (BallArray ballArray, int mode)
                                                    // mode: WAITING, RETURN_ONEBALL, RETURN_ALLBALL, RETURN 
   myPort = new Serial(this, Serial.list()[1], 9620);
   myPort.buffer(bufferSize);
@@ -138,9 +139,8 @@ void draw(){
   checkOn();
   //println("mode :", mode, " tmode: ", trajectory.mode);
   if(on){
-    if(trajectory.hasFinished()){ //<>//
+    if(trajectory.hasFinished()){
       text("Objetivo Completado!", 50, 15);
-      //on = false;
       cp5.getController("on").setValue(0);
     }
     else{
@@ -157,74 +157,53 @@ void draw(){
     dutySide = 0;
     // todo : m1 m2
   }
-
-  if(txOK == false){
+  
+  if(txOK == false){ 
     encodeTx();
   }
 }
 
 void checkOn(){
   if(on & !pre_on){
-    trajectory.set(mode);
-    isTrajectory = trajectory.update(); // UPDATE TIENE QUE BAJAR LA FLAG .hasFinished()
+    trajectory.setMode(mode);
+    isTrajectory = trajectory.update(); // UPDATE TIENE QUE BAJAR LA FLAG .hasFinished
+    preGoal = new PVector(carrito.getX(),carrito.getY());
+    goalDistance = preGoal.dist(trajectory.getGoal());
   }
   if(!on & pre_on){
     mode = WAITING;
     cp5.getController("mode").setValue(WAITING);
-    trajectory.set(mode);
+    trajectory.setMode(mode);
   }
   pre_on = on;
 }
 
 void controlMov(){
-  PVector current_move;
-  PVector preGoal;
-  float currentDistance;
-  float currentAngle;
-
-  current_move = new PVector(trajectory.getGoal().x-carrito.getX(), trajectory.getGoal().y-carrito.getY());
-  currentAngle = getAngle(new PVector(carrito.getDirX(),carrito.getDirY())) - getAngle(current_move);
-  dutySide = DUTYFIX;
-
-  if(abs(currentAngle) < CAR_ANGLE_MARGIN){
-    currentDistance = current_move.mag();
-    if(goalDistance < CAR_DISTANCE_MARGIN){
-      if(!trajectory.isCatched()){ // carrito no tiene la bola
-        preGoal = trajectory.getGoal();
-        trajectory.setCatched(trajectory.nextGoal());  // Cuidado con el caso del ultimo goal: subir la flag .hasFinished()
-        goalDistance = preGoal.dist(trajectory.getGoal());
+  if(trajectory.applyPath()){
+    if(M1mTx == false && M2mTx == false){
+      if(ds == 0){
+        dutySide = (0x7FFF * dutySide) / 100;
+      }else if(ds == 1){
+        dutySide = (-0x7FFF * dutySide) / 100;
       }
-      else{
-        mode = COME_BACK;
-        cp5.getController("mode").setValue(COME_BACK);
-        trajectory.set(mode); // En la clase, siempre se recalcula
-        isTrajectory = trajectory.update();
-      }
+    }else{
+      dutySide = 0;
     }
-    else{
-      duty = int((0.2*0xFFFF) + ((0.3*0xFFFF) * currentDistance)/goalDistance);
-      println("duty (distancia)= " + duty);
-    }
+    duty = (0xFFFF * duty) / 100;
+    println("duty : ", duty);
   }
   else{
-    duty = int((0.2*0xFFFF) + ((0.3*0xFFFF) * abs(currentAngle))/PI);
-    println("duty (angulo)= " + duty);
-    if(currentAngle >= 0){
-      M1mTx = false;
-      M2mTx = true;
-    }
-    else{
-      M1mTx = true;
-      M2mTx = false;
-    } 
+    duty = 0;
+    dutySide = 0;
+    M1mTx = false; //<>//
+    M2mTx = false;
   }
   
-  cp5.getController("Retroceso izquierda").setValue(M1mTx?1:0); //<>//
+  cp5.getController("Retroceso izquierda").setValue(M1mTx?1:0);
   cp5.getController("Retroceso derecha").setValue(M2mTx?1:0);
   cp5.getController("DUTYSIDE").setValue(dutySide);
   cp5.getController("DUTY").setValue(duty);
 }
-
 float getAngle(PVector vector){
   PVector xVector = new PVector(1,0);
   int sign = (vector.y < 0) ? -1 : 1;

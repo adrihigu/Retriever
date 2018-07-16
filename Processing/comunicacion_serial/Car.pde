@@ -64,6 +64,9 @@ static class Car{
   public float getDirY(){
     return dirY.get();
   }
+  public PVector getDir(){
+    return new PVector(getDirX(), getDirY()).normalize();
+  }
   public void set(float xF, float yF, float xB, float yB){
     this.xF.set(xF);
     this.yF.set(yF);
