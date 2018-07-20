@@ -106,7 +106,9 @@ class PathPlanner{
     println("linFix: ", fixLin(angle), " rotFix: ", fixRot(fixLin(angle), PVector.dist(getGoal(),p.car.getPos())));
     //println("lin: ", linOut*LIN_CONST, " rot: ", rotOut*ROT_CONST);
   }
-  
+  public boolean checkObstacle(PVector point, PVector ball){
+    return PVector.dist(point, ball) <= CAR_RADIUS? true : false 
+  }
   public int checkDir(float angle){
     return p.car.getDir().copy().cross(PVector.sub(getGoal(),p.car.getPos())).z >= 0? -1 : 1;
   }

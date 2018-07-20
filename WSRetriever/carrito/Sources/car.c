@@ -87,12 +87,12 @@ errorType updateDoggyTrayectory(void){
 
       //AS1_SendChar(camRxBuf[6]);
       if(camRxBuf[6] < 30 ){       // > 0 => Necesita girar izquierda
-        freeLeft(50, FWD);
+        freeRight(35, FWD);
         print("IZQ ");
       }
       
       else if(camRxBuf[6] > 50){      // < 0 => Necesita girar derecha
-        freeRight(50, FWD);
+        freeLeft(35, FWD);
         print("DER ");
       }
       
@@ -106,18 +106,18 @@ errorType updateDoggyTrayectory(void){
         if((sharpRes > 520) & (sharpRes < 2100)){     // Objetivo lejano
         // if(camRxBuf[7] < 50){     // Objetivo lejano
           //duty = ((2100 - sharpRes) * 0x7FFF) / (2100 - 520);
-          freeRun(50, 50, FWD);
+          freeRun(35, 35, FWD);
           print("FWD ");
           
-        }else if((sharpRes >= 2100) & (sharpRes < 2450)){ // Objetivo en el rango
+        }else if((sharpRes >= 2100) & (sharpRes < 2350)){ // Objetivo en el rango
           // }else if(camRxBuf[7] > 50 && camRxBuf[7] < 90){ // Objetivo en el rango
           stopFreeRun();
           print("CTR ");
           
-        }else if((sharpRes >= 2450) & (sharpRes < 2600)){   // Objetivo cercano
+        }else if((sharpRes >= 2350) & (sharpRes < 2600)){   // Objetivo cercano
           // }else if(camRxBuf[7] > 90 ){   // Objetivo cercano
           duty = 0x7FFF + (((2600 - sharpRes) * 0x7FFF) / (2600 - 2450));
-          freeRun(50, 50, BWD);
+          freeRun(35, 35, BWD);
           print("BWD "); 
         }else{
           stopFreeRun();

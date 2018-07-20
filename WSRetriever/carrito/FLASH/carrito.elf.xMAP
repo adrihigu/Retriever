@@ -88,47 +88,47 @@
   000017CA 0000000C .text   getMode	(CAR_c.obj)
   000017D6 00000234 .text   updateDoggyTrayectory	(CAR_c.obj)
   00001A0A 00000030 .text   startDoggy	(CAR_c.obj)
-  00001A3A 000000A2 .text   car_Init	(CAR_c.obj)
-  00001ADC 00000002 .text   handleError	(CAR_c.obj)
-  00001ADE 000000FA .text   camCMDSync	(CAM_c.obj)
-  00001BD8 00000052 .text   camTCMRawAsync	(CAM_c.obj)
-  00001C2A 0000000C .text   _ewl_exit	(librt.a abort_exit.o   )
-  00001C36 0000001C .text   __call_static_initializers	(librt.a cf_staticinitia)
-  00001C52 0000002C .text   __destroy_global_chain	(librt.a cf_staticinitia)
-  00001C7E 0000003E .text   __ldivu__	(librt.a cf_runtime.o   )
-  00001CBC 00000034 .text   __ldiv__	(librt.a cf_runtime.o   )
-  00001CF0 0000003C .text   __lmodu__	(librt.a cf_runtime.o   )
-  00001D2C 00000034 .text   __lmod__	(librt.a cf_runtime.o   )
-  00001D60 00000002 .rodata Channels	(AD1_c.obj)
-  00001D62 0000000D .rodata @87	(CAR_c.obj)
-  00001D6F 00000007 .rodata @139	(CAR_c.obj)
-  00001D76 00000002 .rodata @140	(CAR_c.obj)
-  00001D78 00000002 .rodata @141	(CAR_c.obj)
-  00001D7A 00000005 .rodata @142	(CAR_c.obj)
-  00001D7F 00000005 .rodata @143	(CAR_c.obj)
-  00001D84 00000005 .rodata @144	(CAR_c.obj)
-  00001D89 00000005 .rodata @145	(CAR_c.obj)
-  00001D8E 00000005 .rodata @146	(CAR_c.obj)
-  00001D93 00000005 .rodata @147	(CAR_c.obj)
-  00001D98 00000005 .rodata @148	(CAR_c.obj)
-  00001D9D 00000001 .rodata @149	(CAR_c.obj)
-  00001D9E 00000025 .rodata @156	(CAR_c.obj)
-  00001DC3 00000003 .rodata @157	(CAR_c.obj)
-  00001DC6 00000016 .rodata @168	(CAR_c.obj)
-  00001DDC 00000003 .rodata @169	(CAR_c.obj)
-  00001DDF 0000001B .rodata @170	(CAR_c.obj)
-  00001DFA 00000005 .rodata @171	(CAR_c.obj)
-  00001DFF 00000017 .rodata @172	(CAR_c.obj)
-  00001E16 00000009 .rodata @173	(CAR_c.obj)
-  00001E1F 0000000F .rodata @174	(CAR_c.obj)
-  00001E2E 00000022 .rodata @175	(CAR_c.obj)
-  00001E50 00000005 .rodata @176	(CAR_c.obj)
-  00001E55 00000021 .rodata @177	(CAR_c.obj)
-  00001E76 00000005 .rodata @178	(CAR_c.obj)
-  00001E7B 00000020 .rodata @179	(CAR_c.obj)
-  00001E9B 00000005 .rodata @180	(CAR_c.obj)
-#>00001EA0          ___ROM_AT (linker command file)
-#>00001EA0          ___DATA_ROM (linker command file)
+  00001A3A 0000009A .text   car_Init	(CAR_c.obj)
+  00001AD4 00000002 .text   handleError	(CAR_c.obj)
+  00001AD6 000000FA .text   camCMDSync	(CAM_c.obj)
+  00001BD0 00000052 .text   camTCMRawAsync	(CAM_c.obj)
+  00001C22 0000000C .text   _ewl_exit	(librt.a abort_exit.o   )
+  00001C2E 0000001C .text   __call_static_initializers	(librt.a cf_staticinitia)
+  00001C4A 0000002C .text   __destroy_global_chain	(librt.a cf_staticinitia)
+  00001C76 0000003E .text   __ldivu__	(librt.a cf_runtime.o   )
+  00001CB4 00000034 .text   __ldiv__	(librt.a cf_runtime.o   )
+  00001CE8 0000003C .text   __lmodu__	(librt.a cf_runtime.o   )
+  00001D24 00000034 .text   __lmod__	(librt.a cf_runtime.o   )
+  00001D58 00000002 .rodata Channels	(AD1_c.obj)
+  00001D5A 0000000D .rodata @87	(CAR_c.obj)
+  00001D67 00000007 .rodata @139	(CAR_c.obj)
+  00001D6E 00000002 .rodata @140	(CAR_c.obj)
+  00001D70 00000002 .rodata @141	(CAR_c.obj)
+  00001D72 00000005 .rodata @142	(CAR_c.obj)
+  00001D77 00000005 .rodata @143	(CAR_c.obj)
+  00001D7C 00000005 .rodata @144	(CAR_c.obj)
+  00001D81 00000005 .rodata @145	(CAR_c.obj)
+  00001D86 00000005 .rodata @146	(CAR_c.obj)
+  00001D8B 00000005 .rodata @147	(CAR_c.obj)
+  00001D90 00000005 .rodata @148	(CAR_c.obj)
+  00001D95 00000001 .rodata @149	(CAR_c.obj)
+  00001D96 00000025 .rodata @156	(CAR_c.obj)
+  00001DBB 00000003 .rodata @157	(CAR_c.obj)
+  00001DBE 00000016 .rodata @167	(CAR_c.obj)
+  00001DD4 00000003 .rodata @168	(CAR_c.obj)
+  00001DD7 0000001B .rodata @169	(CAR_c.obj)
+  00001DF2 00000005 .rodata @170	(CAR_c.obj)
+  00001DF7 00000017 .rodata @171	(CAR_c.obj)
+  00001E0E 00000009 .rodata @172	(CAR_c.obj)
+  00001E17 0000000F .rodata @173	(CAR_c.obj)
+  00001E26 00000022 .rodata @174	(CAR_c.obj)
+  00001E48 00000005 .rodata @175	(CAR_c.obj)
+  00001E4D 00000021 .rodata @176	(CAR_c.obj)
+  00001E6E 00000005 .rodata @177	(CAR_c.obj)
+  00001E73 00000020 .rodata @178	(CAR_c.obj)
+  00001E93 00000005 .rodata @179	(CAR_c.obj)
+#>00001E98          ___ROM_AT (linker command file)
+#>00001E98          ___DATA_ROM (linker command file)
 
 # .data
 #>00800000          ___DATA_RAM (linker command file)
@@ -211,10 +211,10 @@
 #>00000010          ___stack_safety (linker command file)
 #>00800A14          __SP_INIT (linker command file)
 #>00800A14          ___SP_AFTER_RESET (linker command file)
-#>00001EA8          _romp_at (linker command file)
+#>00001EA0          _romp_at (linker command file)
 
 # .romp
-#>00001EA8          __S_romp (linker command file)
+#>00001EA0          __S_romp (linker command file)
 
 
 # Memory map:
@@ -223,12 +223,12 @@
   0000040D 0000040D 00000001 .abs_NVPROT_INIT abs_NVPROT_INIT
   0000040F 0000040F 00000001 .abs_NVOPT_INIT abs_NVOPT_INIT
   00000410 00000410 00000000 .code      code
-  00000410 00000410 00001A90 .text      code
+  00000410 00000410 00001A88 .text      code
   00800000 00800000 00000000 .userram   userram
-  00800000 00001EA0 00000008 .data      userram
+  00800000 00001E98 00000008 .data      userram
   00800008 00800008 0000020C .bss       userram
   00800214 00800214 00000000 .custom    userram
-  00800214 00001EA8 00000018 .romp      userram
+  00800214 00001EA0 00000018 .romp      userram
 
-# Link start time: Wed Jun 27 12:47:41 2018
-# Link end time: Wed Jun 27 12:47:41 2018
+# Link start time: Tue Jul 17 08:07:05 2018
+# Link end time: Tue Jul 17 08:07:05 2018

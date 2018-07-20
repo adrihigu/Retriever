@@ -4,7 +4,7 @@ class PathPlanner{ //<>// //<>// //<>//
   private comunicacion_serial p;
   private int index;
   private ArrayList<PVector> path;
-  private final float PROXIMITY_THRESHOLD = 0.01;
+  private final float PROXIMITY_THRESHOLD = 0.15;
   private final float STOP_MARGIN = 10;
   private final float FINAL_THRESHOLD = 0.22;
   private final float ROT_CONST = 10/(-0.20310407595025542);
@@ -28,7 +28,7 @@ class PathPlanner{ //<>// //<>// //<>//
   private final double KI_LIN = 0;
   private final double KD_LIN = 0;
   private final double KP_ROT = 0.05;
-  private final double KI_ROT = 0.00005;
+  private final double KI_ROT = 0;
   private final double KD_ROT = 0;
   private boolean isRot = true;
   // PathPlanner(BallArray b, Car c, comunicacion_serial p){
@@ -59,6 +59,11 @@ class PathPlanner{ //<>// //<>// //<>//
       //println(car.getPos().sub(point).mag());
       return car.getPos().sub(point).mag() <= FINAL_THRESHOLD;
     }
+     if(mode == RETURN_ONEBALL){
+      //println(point, car.getPos());
+      //println(car.getPos().sub(point).mag());
+      return car.getPos().sub(point).mag() <= PROXIMITY_THRESHOLD;
+    }
     return car.getPos().sub(point).mag() <= PROXIMITY_THRESHOLD;
   }
 
@@ -88,6 +93,21 @@ class PathPlanner{ //<>// //<>// //<>//
       for(int i = 1; i <= p.ballArray.size(); i++){
         if(p.ballArray.getBall(i).getColor() == #FF0000){ // RED
           path.add(p.ballArray.getBall(i).getPos());
+          break;
+        }
+      }
+      
+      rotPid = new MiniPID(KP_ROT, KI_ROT, KD_ROT);
+      linPid = new MiniPID(KP_LIN, KI_LIN, KD_LIN);
+      rotPid.setDirection(true);
+      isRot = true;
+      return true;
+    }
+    else if(mode == RETURN_ONEBALL){
+      for(int i = 1; i <= p.ballArray.size(); i++){
+        if(p.ballArray.getBall(i).getColor() == #FF0000){ // RED
+          path.add(p.ballArray.getBall(i).getPos());
+          path.add(new PVector(0 ,0));
           break;
         }
       }
@@ -129,6 +149,7 @@ class PathPlanner{ //<>// //<>// //<>//
         return false;
       }
       else{
+        nextGoal();
         linPid.reset();
         rotPid.reset();
       }

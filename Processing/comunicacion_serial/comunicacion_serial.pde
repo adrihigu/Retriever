@@ -10,7 +10,7 @@ public static final int RETURN_ALLBALL = 2;
 public static final int TRACK = 3;
 public static final int COME_BACK = 4;
 
-public static final float CAR_DISTANCE_MARGIN = 10; // 8 cm
+public static final float CAR_DISTANCE_MARGIN = 4; // 8 cm
 public static final float CAR_ANGLE_MARGIN = PI/18; // 15º
 
 public static final int DUTYFIX = int((-3*0xFFFF)/100);  // -3%
@@ -195,7 +195,7 @@ void controlMov(){
   else{
     duty = 0;
     dutySide = 0;
-    M1mTx = false; //<>//
+    M1mTx = false;
     M2mTx = false;
   }
   
